@@ -6,3 +6,4 @@
 @section('content')
     <div id="react-root"></div>
 @endsection
+<!-- test git -->
