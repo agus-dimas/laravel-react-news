@@ -31,7 +31,7 @@ const TiltCard = ({ title, description, image, link, author }) => {
     return (
         <a href={link} className="w-full">
             <div
-                className="rounded-xl shadow-xl overflow-hidden transition-transform duration-200 ease-out cursor-pointer bg-white flex flex-col h-[420px]"
+                className="group rounded-xl shadow-xl overflow-hidden transition-transform duration-200 ease-out cursor-pointer bg-white flex flex-col h-[420px]"
                 onMouseMove={handleMove}
                 onMouseLeave={() => setTilt({ x: 0, y: 0 })}
                 style={{ transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
@@ -46,9 +46,11 @@ const TiltCard = ({ title, description, image, link, author }) => {
                 <p className="px-4 text-sm text-gray-600 leading-relaxed line-clamp-3 min-h-[4.5rem]">
                     {description}
                 </p>
-                <span className="mt-auto px-4 pb-4 text-sm text-indigo-600 font-medium">
-                    Baca selengkapnya →
-                </span>
+                <div className="mt-auto px-4 pb-4">
+                    <span className="read-more-btn">
+                        Baca selengkapnya →
+                    </span>
+                </div>
             </div>
         </a>
     );
@@ -98,8 +100,8 @@ const App = () => {
                                 <div className="order-1">
                                     <div className="rounded-2xl overflow-hidden">
                                         <img
-                                            src="/images/home/Logo Partai Garuda baru - text putih.png"
-                                            alt="Feature Home"
+                                            src="/images/home/moment.png"
+                                            alt=""
                                             className="block w-11/12 mx-auto md:w-full h-auto max-h-[180px] md:max-h-[320px] object-contain"
                                         />
                                     </div>
@@ -155,7 +157,7 @@ const App = () => {
 
                 <section className="mt-12">
                     <h2 className="text-xl font-semibold text-center mb-6 text-gray-700">
-                        Media Center
+                        Media Center Garuda
                     </h2>
                     <div className="relative overflow-hidden rounded-2xl bg-transparent py-6">
                         <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-gray-100 to-transparent z-10" />
@@ -188,6 +190,23 @@ const App = () => {
             <style>{`
                 .carousel-track {
                     animation: carousel-scroll 24s linear infinite;
+                }
+                .read-more-btn {
+                    position: relative;
+                    display: inline-block;
+                    border-radius: 9999px;
+                    border: 1px solid #111827;
+                    padding: 4px 8px;
+                    font-size: 0.62rem;
+                    font-weight: 600;
+                    color: #ffffff;
+                    background: #111827;
+                    transition: background .28s ease, border-color .28s ease, transform .2s ease;
+                }
+                .group:hover .read-more-btn {
+                    border-color: #b3181f;
+                    background: #b3181f;
+                    transform: translateY(-1px);
                 }
                 @keyframes carousel-scroll {
                     0% {

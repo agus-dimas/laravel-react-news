@@ -18,7 +18,7 @@ const TiltCard = ({ title, description, image, link, author }) => {
     return (
         <a href={link} className="w-full">
             <div
-                className="rounded-xl shadow-xl overflow-hidden transition-transform duration-200 ease-out cursor-pointer bg-white flex flex-col h-[420px]"
+                className="group rounded-xl shadow-xl overflow-hidden transition-transform duration-200 ease-out cursor-pointer bg-white flex flex-col h-[420px]"
                 onMouseMove={handleMove}
                 onMouseLeave={() => setTilt({ x: 0, y: 0 })}
                 style={{ transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
@@ -29,9 +29,11 @@ const TiltCard = ({ title, description, image, link, author }) => {
                 <p className="px-4 text-sm text-gray-600 leading-relaxed line-clamp-3 min-h-[4.5rem]">
                     {description}
                 </p>
-                <span className="mt-auto px-4 pb-4 text-sm text-indigo-600 font-medium">
-                    Baca selengkapnya →
-                </span>
+                <div className="mt-auto px-4 pb-4">
+                    <span className="read-more-btn">
+                        Baca selengkapnya →
+                    </span>
+                </div>
             </div>
         </a>
     );
@@ -69,7 +71,7 @@ const NewsApp = () => {
         <div className="min-h-screen flex flex-col bg-gray-100">
             <main className="flex-grow pt-24 px-8 pb-8">
                 {/* <BannerSlider /> */}
-                <h1 className="text-3xl font-bold text-center mb-10">Berita Terbaru</h1>
+                <h1 className="text-3xl font-bold text-center mb-10">Berita Garuda</h1>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {cards.map((card, i) => (
@@ -97,6 +99,26 @@ const NewsApp = () => {
             </main>
 
             <Footer />
+
+            <style>{`
+                .read-more-btn {
+                    position: relative;
+                    display: inline-block;
+                    border-radius: 9999px;
+                    border: 1px solid #111827;
+                    padding: 4px 8px;
+                    font-size: 0.62rem;
+                    font-weight: 600;
+                    color: #ffffff;
+                    background: #111827;
+                    transition: background .28s ease, border-color .28s ease, transform .2s ease;
+                }
+                .group:hover .read-more-btn {
+                    border-color: #b3181f;
+                    background: #b3181f;
+                    transform: translateY(-1px);
+                }
+            `}</style>
         </div>
     );
 };
