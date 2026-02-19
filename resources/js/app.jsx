@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../css/app.css';
-import { BannerSlider } from './components/BannerSlider';
 import { Footer } from './components/Footer'; // pastikan Footer.jsx ada
 
 const shoeBrands = [
@@ -47,8 +46,10 @@ const TiltCard = ({ title, description, image, link, author }) => {
                     {description}
                 </p>
                 <div className="mt-auto px-4 pb-4">
-                    <span className="read-more-btn">
-                        Baca selengkapnya →
+                    <span className="relative inline-flex items-center justify-center overflow-hidden rounded-lg px-3 py-1.5 text-[10px] font-semibold text-white">
+                        <span className="absolute inset-0 bg-gradient-to-r from-[#d11b24] via-[#b3181f] to-[#7f0f15] transition-all duration-500 group-hover:scale-105"></span>
+                        <span className="absolute -inset-y-1 -left-8 w-8 rotate-12 bg-white/30 blur-md transition-all duration-700 group-hover:left-[105%]"></span>
+                        <span className="relative">Baca selengkapnya →</span>
                     </span>
                 </div>
             </div>
@@ -91,30 +92,28 @@ const App = () => {
 
             {/* Main content */}
             <main className="flex-grow mt-16 mb-4 w-full pt-4 px-8 pb-8 pt-4">
-                <BannerSlider />
-
                 <section className="mt-8 mb-10 relative overflow-hidden text-white bg-transparent w-screen left-1/2 right-1/2 -mx-[50vw]">
                     <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 md:py-8">
                         <div className="relative">
-                            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6 py-8 md:px-10 md:py-10">
+                            <div className="relative grid grid-cols-[0.9fr_1.1fr] md:grid-cols-2 gap-4 md:gap-8 items-center px-4 py-6 md:px-10 md:py-10">
                                 <div className="order-1">
                                     <div className="rounded-2xl overflow-hidden">
                                         <img
                                             src="/images/home/moment.png"
                                             alt=""
-                                            className="block w-11/12 mx-auto md:w-full h-auto max-h-[180px] md:max-h-[320px] object-contain"
+                                            className="block w-full mx-auto h-auto max-h-[210px] md:max-h-[580px] object-contain"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="order-2">
-                                    <p className="text-xs uppercase tracking-[0.25em] text-red-300 font-bold mb-4">
+                                    <p className="text-[10px] md:text-xs uppercase tracking-[0.22em] md:tracking-[0.25em] text-red-300 font-bold mb-2 md:mb-4">
                                         Partai Garda Republik Indonesia
                                     </p>
-                                    <h2 className="text-2xl md:text-3xl font-bold leading-tight text-black mb-4">
+                                    <h2 className="text-lg md:text-3xl font-bold leading-tight text-black mb-2 md:mb-4">
                                         "Bersama, Kita Bisa!"
                                     </h2>
-                                    <p className="text-black leading-relaxed">
+                                    <p className="text-xs md:text-base text-black leading-relaxed">
                                         Komitmen Kami Kami siap menjadi pelopor perubahan dan garda terdepan
                                         dalam memperjuangkan hak-hak rakyat. Dengan tekad yang bulat,
                                         kami berkomitmen untuk selalu hadir dalam setiap langkah perjuangan
@@ -190,23 +189,6 @@ const App = () => {
             <style>{`
                 .carousel-track {
                     animation: carousel-scroll 24s linear infinite;
-                }
-                .read-more-btn {
-                    position: relative;
-                    display: inline-block;
-                    border-radius: 9999px;
-                    border: 1px solid #111827;
-                    padding: 4px 8px;
-                    font-size: 0.62rem;
-                    font-weight: 600;
-                    color: #ffffff;
-                    background: #111827;
-                    transition: background .28s ease, border-color .28s ease, transform .2s ease;
-                }
-                .group:hover .read-more-btn {
-                    border-color: #b3181f;
-                    background: #b3181f;
-                    transform: translateY(-1px);
                 }
                 @keyframes carousel-scroll {
                     0% {
