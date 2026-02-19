@@ -5,15 +5,15 @@ import { BannerSlider } from './components/BannerSlider';
 import { Footer } from './components/Footer'; // pastikan Footer.jsx ada
 
 const shoeBrands = [
-    { name: 'Nike111', image: '/images/p1.png' },
-    { name: 'Adidas', image: '/images/p2.png' },
-    { name: 'Puma', image: '/images/p3.png' },
-    { name: 'Converse', image: '/images/p4.png' },
-    { name: 'Vans', image: '/images/p5.png' },
-    { name: 'Adidas', image: '/images/p2.png' },
-    { name: 'Converse', image: '/images/p4.png' },
-    { name: 'Adidas', image: '/images/p2.png' },
-    { name: 'Puma', image: '/images/p3.png' },
+    { name: 'persepsi', image: '/images/p1.png' },
+    { name: 'the respon', image: '/images/p2.png' },
+    { name: 'wehjangan', image: '/images/p3.png' },
+    { name: 'the guardian', image: '/images/p4.png' },
+    { name: 'garuda', image: '/images/p5.png' },
+    { name: 'the respon', image: '/images/p2.png' },
+    { name: 'the guardian', image: '/images/p4.png' },
+    { name: 'the respon', image: '/images/p2.png' },
+    { name: 'wehjangan', image: '/images/p3.png' },
 ];
 
 // Komponen Til Card
@@ -90,6 +90,41 @@ const App = () => {
             {/* Main content */}
             <main className="flex-grow mt-16 mb-4 w-full pt-4 px-8 pb-8 pt-4">
                 <BannerSlider />
+
+                <section className="mt-8 mb-10 relative overflow-hidden text-white bg-transparent w-screen left-1/2 right-1/2 -mx-[50vw]">
+                    <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 md:py-8">
+                        <div className="relative">
+                            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6 py-8 md:px-10 md:py-10">
+                                <div className="order-1">
+                                    <div className="rounded-2xl overflow-hidden">
+                                        <img
+                                            src="/images/home/Logo Partai Garuda baru - text putih.png"
+                                            alt="Feature Home"
+                                            className="block w-11/12 mx-auto md:w-full h-auto max-h-[180px] md:max-h-[320px] object-contain"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="order-2">
+                                    <p className="text-xs uppercase tracking-[0.25em] text-red-300 font-bold mb-4">
+                                        Partai Garda Republik Indonesia
+                                    </p>
+                                    <h2 className="text-2xl md:text-3xl font-bold leading-tight text-black mb-4">
+                                        "Bersama, Kita Bisa!"
+                                    </h2>
+                                    <p className="text-black leading-relaxed">
+                                        Komitmen Kami Kami siap menjadi pelopor perubahan dan garda terdepan
+                                        dalam memperjuangkan hak-hak rakyat. Dengan tekad yang bulat,
+                                        kami berkomitmen untuk selalu hadir dalam setiap langkah perjuangan
+                                        masyarakat, memberikan solusi nyata untuk tantangan bangsa,
+                                        dan membawa aspirasi Anda ke tingkat yang lebih tinggi.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <h1 className="text-3xl font-bold text-center mb-10">Berita Terbaru</h1>
 
                 {/* Grid card */}

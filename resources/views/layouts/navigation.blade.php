@@ -26,6 +26,11 @@
                    {{ request()->is('konsultasi') ? 'border-b-2 border-indigo-600 text-gray-900' : 'text-gray-500 hover:text-gray-700' }}">
                     Konsultasi
                 </a>
+                <a href="{{ route('struktur') }}"
+                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('struktur') ? 'border-b-2 border-indigo-600 text-gray-900' : 'text-gray-500 hover:text-gray-700' }}">
+                    Struktur
+                </a>
             </div>
 
             <!-- Mobile menu button & User dropdown -->
@@ -95,6 +100,9 @@
                         <a href="{{ route('consultations.create') }}"
                             class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                             Konsultasi
+                        </a>
+                        <a href="{{ route('struktur') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            Struktur
                         </a>
                     </div>
                 </div>

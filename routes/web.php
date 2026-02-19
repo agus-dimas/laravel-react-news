@@ -12,6 +12,9 @@ use App\Http\Controllers\ConsultationController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/struktur', function () {
+    return view('struktur');
+})->name('struktur');
 
 // =======================
 // ROUTE PUBLIC BERITA
