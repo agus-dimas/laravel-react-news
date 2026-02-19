@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom/client';
+import { Footer } from './components/Footer';
 
 const boardMembers = [
     {
@@ -9,13 +10,7 @@ const boardMembers = [
         photo: '/images/pengurus/ketum.jpg',
     },
     {
-        role: 'Ketua Umum',
-        name: 'Ahmad Ridha Sabana',
-        bio: 'Memimpin arah Partai dan memastikan setiap program berjalan sesuai dengan misi partai.',
-        photo: '/images/pengurus/ketum.jpg',
-    },
-    {
-        role: 'Sekretaris jenderanl',
+        role: 'Sekretaris Jenderal',
         name: 'Ihsan Jauhari',
         bio: 'Mengelola administrasi organisasi dan dokumentasi kegiatan strategis.',
         photo: '/images/pengurus/ihsan.jpg',
@@ -78,11 +73,10 @@ const boardMembers = [
 const fallbackPhoto = '/images/p1.png';
 
 function StrukturPage() {
-    const [chief, ...members] = boardMembers;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [slideDirection, setSlideDirection] = useState(null);
     const slideTimerRef = useRef(null);
-    const totalMembers = members.length;
+    const totalMembers = boardMembers.length;
 
     const triggerSlide = (direction, updaterFn) => {
         if (slideTimerRef.current) {
@@ -104,12 +98,12 @@ function StrukturPage() {
     };
 
     const getMember = (offset) => {
-        return members[(currentIndex + offset + totalMembers) % totalMembers];
+        return boardMembers[(currentIndex + offset + totalMembers) % totalMembers];
     };
 
     return (
-        <div className="min-h-screen pt-24 pb-14 px-4 sm:px-6 lg:px-8 bg-[#f8f8f7] text-zinc-900">
-            <div className="relative max-w-6xl mx-auto">
+        <div className="min-h-screen pt-24 bg-[#f8f8f7] text-zinc-900">
+            <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="pointer-events-none absolute -top-20 -left-16 h-72 w-72 rounded-full bg-red-300/35 blur-[90px]" />
                 <div className="pointer-events-none absolute -bottom-24 -right-12 h-72 w-72 rounded-full bg-zinc-300/30 blur-[100px]" />
 
@@ -125,41 +119,6 @@ function StrukturPage() {
                         Setiap posisi memiliki tanggung jawab yang jelas agar semua program yang
                         dirancang dan dilaksanakan sesuai dalam visi dan misi partai.
                     </p>
-                </section>
-
-                <section className="reveal-up mb-6">
-                    <div className="flex items-stretch gap-4">
-                        <article className="glass-card glass-card-strong flex flex-col sm:flex-row overflow-hidden rounded-2xl flex-1">
-                            <figure className="sm:w-56 md:w-64 h-48 sm:h-auto shrink-0">
-                                <img
-                                    src={chief.photo || fallbackPhoto}
-                                    alt={chief.name}
-                                    className="h-full w-full object-cover"
-                                    onError={(e) => {
-                                        e.currentTarget.onerror = null;
-                                        e.currentTarget.src = fallbackPhoto;
-                                    }}
-                                />
-                            </figure>
-                            <div className="p-5 md:p-6">
-                                <p className="text-red-500 text-sm font-medium mb-1">{chief.role}</p>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-3">{chief.name}</h2>
-                                <p className="text-zinc-600 leading-relaxed md:max-w-2xl">{chief.bio}</p>
-                            </div>
-                        </article>
-
-                        <figure className="hidden lg:block w-64 xl:w-72 rounded-2xl overflow-hidden bg-transparent shrink-0">
-                            <img
-                                src="/images/p5.png"
-                                alt="partai garuda"
-                                className="h-full w-full object-cover"
-                                onError={(e) => {
-                                    e.currentTarget.onerror = null;
-                                    e.currentTarget.src = fallbackPhoto;
-                                }}
-                            />
-                        </figure>
-                    </div>
                 </section>
 
                 <section className="reveal-up glass-card rounded-3xl p-6 md:p-8">
@@ -216,7 +175,7 @@ function StrukturPage() {
                         >
                             Prev
                         </button>
-                        {members.map((_, pageIndex) => (
+                        {boardMembers.map((_, pageIndex) => (
                             <button
                                 key={`dot-${pageIndex}`}
                                 type="button"
@@ -238,6 +197,10 @@ function StrukturPage() {
                 </section>
             </div>
 
+            <div className="mt-10">
+                <Footer />
+            </div>
+
             <style>{`
                 .reveal-up {
                     opacity: 0;
@@ -251,10 +214,6 @@ function StrukturPage() {
                     backdrop-filter: blur(14px);
                     -webkit-backdrop-filter: blur(14px);
                     box-shadow: 0 20px 45px rgba(20, 20, 20, 0.10);
-                }
-
-                .glass-card-strong {
-                    background: linear-gradient(160deg, rgba(255,255,255,0.93), rgba(255,255,255,0.78));
                 }
 
                 .select-card {

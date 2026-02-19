@@ -45,7 +45,7 @@
                         </button>
 
                         <!-- Dropdown -->
-                        <div x-show="open" @click.outside="open = false" x-transition
+                        <div x-show="open" x-cloak @click.outside="open = false" x-transition
                             class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                             <a href="{{ route('dashboard') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
@@ -89,7 +89,7 @@
                     </button>
 
                     <!-- Mobile Menu -->
-                    <div x-show="open" @click.outside="open = false" x-transition
+                    <div x-show="open" x-cloak @click.outside="open = false" x-transition
                         class="absolute top-16 left-0 w-full bg-[#8f1016] shadow-xl sm:hidden">
                         <a href="{{ url('/') }}" class="block px-4 py-2 text-white hover:bg-white/10">
                             Home
