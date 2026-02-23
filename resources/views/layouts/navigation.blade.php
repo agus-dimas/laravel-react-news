@@ -4,8 +4,8 @@
 
             <!-- Brand / Logo -->
             <div class="flex-shrink-0 flex items-center">
-                <a href="{{ url('/') }}" class="text-xl font-bold tracking-wide text-white">
-                    MyNews
+                <a href="{{ url('/') }}" class="inline-flex items-center">
+                    <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar" class="h-10 w-auto object-contain" />
                 </a>
             </div>
 

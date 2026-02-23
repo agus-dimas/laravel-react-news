@@ -31,7 +31,7 @@ const boardMembers = [
         role: 'Ketua 2',
         name: 'Jeffry Yulianto Waisapy',
         bio: 'Membangun komunikasi publik dan memperkuat citra organisasi.',
-        photo: '/images/pengurus/',
+        photo: '/images/pengurus/jefry.jpg',
     },
     {
         role: 'Ketua 3',
@@ -116,7 +116,7 @@ function StrukturPage() {
         <div className="min-h-screen pt-24 text-zinc-900 bg-[#d9d9dc]">
             <div className="relative overflow-hidden">
                 <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
-                    <section className="lux-reveal glass-dark rounded-3xl p-6 md:p-10 mb-7 border border-white/60">
+                    <section className="lux-reveal reveal-1 lux-panel glass-dark rounded-3xl p-6 md:p-10 mb-7 border border-white/60 overflow-hidden">
                         <p className="text-red-400 text-[11px] md:text-xs tracking-[0.3em] uppercase mb-3 font-semibold">
                             Struktur Organisasi
                         </p>
@@ -129,7 +129,7 @@ function StrukturPage() {
                         </p>
                     </section>
 
-                    <section className="lux-reveal glass-dark rounded-3xl p-5 md:p-8 border border-white/60">
+                    <section className="lux-reveal reveal-2 lux-panel glass-dark rounded-3xl p-5 md:p-8 border border-white/60 overflow-hidden">
                         <div className="flex flex-wrap items-center justify-between gap-3 mb-6 md:mb-8">
                             <h2 className="text-2xl md:text-3xl font-bold text-zinc-900">Kepengurusan Inti</h2>
                             <div className="px-3 py-1.5 rounded-full bg-white/55 text-xs tracking-wider uppercase text-zinc-700 border border-white/70">
@@ -204,7 +204,7 @@ function StrukturPage() {
                             </button>
                         </div>
 
-                        <article key={activeMember.name} className="lux-reveal-soft mt-7 md:mt-8 rounded-2xl border border-white/70 bg-white/45 px-4 md:px-6 py-4 md:py-5">
+                        <article key={activeMember.name} className="lux-reveal-soft mt-7 md:mt-8 rounded-2xl border border-white/70 bg-white/45 px-4 md:px-6 py-4 md:py-5 overflow-hidden">
                             <p className="text-red-400 text-[11px] md:text-xs tracking-[0.24em] uppercase mb-2">
                                 Profil Pengurus
                             </p>
@@ -232,12 +232,43 @@ function StrukturPage() {
 
                 .lux-reveal {
                     opacity: 0;
-                    transform: translateY(26px) scale(0.985);
-                    animation: revealLux 0.95s cubic-bezier(.16, 1, .3, 1) forwards;
+                    transform: perspective(1200px) translateY(34px) scale(0.972) rotateX(7deg);
+                    filter: blur(10px) saturate(.82);
+                    transform-origin: center 80%;
+                    will-change: transform, opacity, filter;
+                    animation: revealLux 1.1s cubic-bezier(.16, 1, .3, 1) forwards;
                 }
 
                 .lux-reveal-soft {
-                    animation: revealSoft 0.65s cubic-bezier(.22, 1, .36, 1);
+                    animation: revealSoft 0.85s cubic-bezier(.22, 1, .36, 1);
+                }
+
+                .lux-panel {
+                    position: relative;
+                    isolation: isolate;
+                }
+
+                .lux-panel::after {
+                    content: "";
+                    position: absolute;
+                    inset: -20% -40%;
+                    background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.42) 48%, transparent 62%);
+                    pointer-events: none;
+                    mix-blend-mode: screen;
+                    animation: sheenSweep 1.35s cubic-bezier(.22, 1, .36, 1) .45s both;
+                    z-index: 2;
+                }
+
+                .reveal-1 {
+                    animation-delay: .02s;
+                }
+
+                .reveal-2 {
+                    animation-delay: .16s;
+                }
+
+                .reveal-3 {
+                    animation-delay: .3s;
                 }
 
                 .selection-track {
@@ -282,18 +313,37 @@ function StrukturPage() {
                 @keyframes revealLux {
                     to {
                         opacity: 1;
-                        transform: translateY(0) scale(1);
+                        transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg);
+                        filter: blur(0) saturate(1);
+                    }
+                }
+
+                @keyframes sheenSweep {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(-180%) skewX(-20deg);
+                    }
+
+                    25% {
+                        opacity: .55;
+                    }
+
+                    to {
+                        opacity: 0;
+                        transform: translateX(240%) skewX(-20deg);
                     }
                 }
 
                 @keyframes revealSoft {
                     from {
                         opacity: 0;
-                        transform: translateY(12px);
+                        transform: translateY(14px) scale(.992);
+                        filter: blur(4px);
                     }
                     to {
                         opacity: 1;
-                        transform: translateY(0);
+                        transform: translateY(0) scale(1);
+                        filter: blur(0);
                     }
                 }
 
@@ -316,6 +366,17 @@ function StrukturPage() {
                     to {
                         transform: translateX(0);
                         opacity: 1;
+                    }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .lux-reveal,
+                    .lux-reveal-soft,
+                    .lux-panel::after {
+                        animation: none !important;
+                        filter: none !important;
+                        transform: none !important;
+                        opacity: 1 !important;
                     }
                 }
 

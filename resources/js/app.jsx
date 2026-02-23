@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../css/app.css';
-import { Footer } from './components/Footer'; // pastikan Footer.jsx ada
+import { Footer } from './components/Footer'; // Footer.jsx ada
 
 const shoeBrands = [
     { name: 'persepsi', image: '/images/p1.png' },
@@ -91,17 +91,72 @@ const App = () => {
 
 
             {/* Main content */}
-            <main className="flex-grow mt-16 mb-4 w-full pt-4 px-8 pb-8 pt-4">
-                <section className="mt-8 mb-10 relative overflow-hidden text-white bg-transparent w-screen left-1/2 right-1/2 -mx-[50vw]">
-                    <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 md:py-8">
+            < main className="flex-grow mt-10 mb-4 w-full pt-4 px-8 pb-8 pt-4" >
+                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden mb-8">
+                    <img
+                        src="/images/banner home.jpg"
+                        alt="Header Home"
+                        className="w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
+                    />
+                    <span className="hero-sheen pointer-events-none absolute inset-y-0 -left-1/3 w-1/3" />
+                    <span className="hero-sheen-two pointer-events-none absolute inset-y-0 -left-1/3 w-1/4" />
+                </section>
+
+                <section className="mb-8">
+                    <div className="w-full md:max-w-5xl mx-auto px-3 md:px-6">
+                        <div className="rounded-2xl px-6 py-6 md:px-8 md:py-7">
+                            <p className="text-[11px] md:text-xs uppercase tracking-[0.25em] text-red-600 font-semibold mb-2">
+                                Partai Garuda
+                            </p>
+                            <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-3">
+                                Gerakan Politik Kebangsaan Untuk Indonesia
+                            </h2>
+                            <p className="text-sm md:text-base text-zinc-700 leading-relaxed">
+                                Partai Garuda hadir sebagai wadah perjuangan politik yang berfokus pada semangat
+                                nasionalisme, kerakyatan, dan keadilan sosial. Kami berjuang dan bekerja untuk perubahan Indonesia.
+                                Dan setiap kader kami adalah patriot-patriot bangsa yang selalu siap menyingsingkan lengan baju
+                                untuk mewujudkan cita-cita para pendiri Bangsa dan Negara Kesatuan Republik Indonesia.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#202020] py-8 md:py-8 mb-8">
+                    <div className="max-w-7xl mx-auto px-2 md:px-8 grid grid-cols-3 gap-2 md:gap-5 place-items-center">
+                        <div className="overflow-hidden rounded-xl w-full max-w-[360px] bg-white/5">
+                            <img
+                                src="/images/home/NASIONALIS.jpg"
+                                alt="Galeri 1"
+                                className="block w-full object-contain object-center mx-auto"
+                            />
+                        </div>
+                        <div className="overflow-hidden rounded-xl w-full max-w-[360px] bg-white/5">
+                            <img
+                                src="/images/home/RELIGIUS.jpg"
+                                alt="Galeri 2"
+                                className="block w-full object-contain object-center mx-auto"
+                            />
+                        </div>
+                        <div className="overflow-hidden rounded-xl w-full max-w-[360px] bg-white/5">
+                            <img
+                                src="/images/home/KERAKYATAN.jpg"
+                                alt="Galeri 3"
+                                className="block w-full object-contain object-center mx-auto"
+                            />
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mt-0 mb-20 relative z-10 overflow-hidden text-white bg-transparent w-screen left-1/2 right-1/2 -mx-[50vw]">
+                    <div className="sticky top-20 max-w-7xl mx-auto px-6 md:px-8 py-3 md:py-4">
                         <div className="relative">
                             <div className="relative grid grid-cols-[0.9fr_1.1fr] md:grid-cols-2 gap-4 md:gap-8 items-center px-4 py-6 md:px-10 md:py-10">
                                 <div className="order-1">
                                     <div className="rounded-2xl overflow-hidden">
                                         <img
                                             src="/images/home/moment.png"
-                                            alt=""
-                                            className="block w-full mx-auto h-auto max-h-[210px] md:max-h-[580px] object-contain"
+                                            alt="Moment Partai Garuda"
+                                            className="w-full mx-auto h-[200px] md:h-[420px] object-contain"
                                         />
                                     </div>
                                 </div>
@@ -120,7 +175,43 @@ const App = () => {
                                         masyarakat, memberikan solusi nyata untuk tantangan bangsa,
                                         dan membawa aspirasi Anda ke tingkat yang lebih tinggi.
                                     </p>
+                                    <div className="mt-10 px-auto">
+                                        <a
+                                            href="/"
+                                            className="relative inline-flex items-center justify-center overflow-hidden rounded-lg px-3 py-1.5 text-[10px] font-semibold text-white"
+                                        >
+                                            <span className="absolute inset-0 bg-gradient-to-r from-[#d11b24] via-[#b3181f] to-[#7f0f15] transition-all duration-500 group-hover:scale-105"></span>
+                                            <span className="absolute -inset-y-1 -left-8 w-8 rotate-12 bg-white/30 blur-md transition-all duration-700 group-hover:left-[105%]"></span>
+                                            <span className="relative">BERGABUNG MENJADI ANGGOTA</span>
+                                        </a>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative z-20 -mt-14 md:-mt-20 mb-4">
+                    <div className="max-w-6xl mx-auto px-4 md:px-8">
+                        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#202020] py-8 md:py-8 mb-8 shadow-[0_20px_36px_rgba(0,0,0,0.18)]">
+                            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-red-600 font-semibold text-center mb-2 md:mb-3">
+                                Gerakan
+                            </p>
+                            <h3 className="text-lg md:text-3xl font-bold text-white text-center px-4">
+                                Partai Garuda Untuk Indonesia Berdaulat
+                            </h3>
+                            <p className="mt-3 md:mt-4 text-sm md:text-base text-white text-center max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
+                                Kami hadir membawa semangat perubahan melalui kerja politik yang berpihak pada rakyat,
+                                mendorong keadilan sosial, serta memperkuat persatuan nasional untuk masa depan Indonesia
+                                yang lebih maju dan bermartabat.
+                            </p>
+
+                            <div className="mt-3 md:mt-4 flex justify-center px-4 md:px-0">
+                                <img
+                                    src="/images/home/indonesia.png"
+                                    alt="Highlight Partai Garuda"
+                                    className="w-full max-w-4xl md:max-w-5xl h-auto max-h-[220px] md:max-h-[340px] object-contain"
+                                />
                             </div>
                         </div>
                     </div>
@@ -181,14 +272,50 @@ const App = () => {
                     </div>
                 </section>
 
-            </main>
+            </main >
 
             {/* Footer */}
-            <Footer />
+            < Footer />
 
             <style>{`
+                .hero-sheen {
+                    background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.06) 42%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.06) 58%, transparent 100%);
+                    filter: blur(0.4px);
+                    animation: heroSheen 2.8s cubic-bezier(.22, 1, .36, 1) .35s both;
+                }
+                .hero-sheen-two {
+                    background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.04) 40%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.04) 60%, transparent 100%);
+                    filter: blur(0.5px);
+                    animation: heroSheenTwo 3.2s cubic-bezier(.22, 1, .36, 1) 1s both;
+                }
                 .carousel-track {
                     animation: carousel-scroll 24s linear infinite;
+                }
+                @keyframes heroSheen {
+                    from {
+                        transform: translateX(0);
+                        opacity: 0;
+                    }
+                    12% {
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(440%);
+                        opacity: 0;
+                    }
+                }
+                @keyframes heroSheenTwo {
+                    from {
+                        transform: translateX(0);
+                        opacity: 0;
+                    }
+                    15% {
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(520%);
+                        opacity: 0;
+                    }
                 }
                 @keyframes carousel-scroll {
                     0% {
@@ -199,7 +326,7 @@ const App = () => {
                     }
                 }
             `}</style>
-        </div>
+        </div >
     );
 };
 
