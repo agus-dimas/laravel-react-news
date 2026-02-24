@@ -1,18 +1,19 @@
-<nav class="bg-[#b3181f]/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.28)] fixed w-full z-50 border-b border-white/10">
+<nav
+    class="bg-[#b3181f]/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.28)] fixed w-full z-50 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
 
             <!-- Brand / Logo -->
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ url('/') }}" class="inline-flex items-center">
-                    <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar" class="h-10 w-auto object-contain" />
+                    <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar"
+                        class="h-10 w-auto object-contain" />
                 </a>
             </div>
 
             <!-- Menu Desktop -->
             <div class="hidden sm:flex sm:space-x-8 items-center">
-                <a href="{{ url('/') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
+                <a href="{{ url('/') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium
                    {{ request()->is('/') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
                     Home
                 </a>
@@ -21,15 +22,16 @@
                    {{ request()->is('news') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
                     Berita
                 </a>
-                <a href="{{ route('consultations.create') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('konsultasi') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
-                    Konsultasi
-                </a>
+
                 <a href="{{ route('struktur') }}"
                     class="inline-flex items-center px-1 pt-1 text-sm font-medium
                    {{ request()->is('struktur') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
                     Struktur
+                </a>
+                <a href="{{ route('consultations.create') }}"
+                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('konsultasi') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
+                    Konsultasi
                 </a>
             </div>
 

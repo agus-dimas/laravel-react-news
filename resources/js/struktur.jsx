@@ -248,17 +248,6 @@ function StrukturPage() {
                     isolation: isolate;
                 }
 
-                .lux-panel::after {
-                    content: "";
-                    position: absolute;
-                    inset: -20% -40%;
-                    background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.42) 48%, transparent 62%);
-                    pointer-events: none;
-                    mix-blend-mode: screen;
-                    animation: sheenSweep 1.35s cubic-bezier(.22, 1, .36, 1) .45s both;
-                    z-index: 2;
-                }
-
                 .reveal-1 {
                     animation-delay: .02s;
                 }
@@ -318,22 +307,6 @@ function StrukturPage() {
                     }
                 }
 
-                @keyframes sheenSweep {
-                    0% {
-                        opacity: 0;
-                        transform: translateX(-180%) skewX(-20deg);
-                    }
-
-                    25% {
-                        opacity: .55;
-                    }
-
-                    to {
-                        opacity: 0;
-                        transform: translateX(240%) skewX(-20deg);
-                    }
-                }
-
                 @keyframes revealSoft {
                     from {
                         opacity: 0;
@@ -371,8 +344,7 @@ function StrukturPage() {
 
                 @media (prefers-reduced-motion: reduce) {
                     .lux-reveal,
-                    .lux-reveal-soft,
-                    .lux-panel::after {
+                    .lux-reveal-soft {
                         animation: none !important;
                         filter: none !important;
                         transform: none !important;

@@ -15,6 +15,9 @@ Route::get('/', function () {
 Route::get('/struktur', function () {
     return view('struktur');
 })->name('struktur');
+Route::get('/media', function () {
+    return view('media.index');
+})->name('media.index');
 
 // =======================
 // ROUTE PUBLIC BERITA
