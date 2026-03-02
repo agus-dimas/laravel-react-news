@@ -144,12 +144,12 @@ const MediaApp = () => {
                         </div>
                     </section>
 
-                    <div className="rounded-3xl border border-white/80 bg-white/75 backdrop-blur-xl shadow-[0_24px_70px_rgba(20,20,20,0.12)] p-6 md:p-9 mb-8">
+                    <div className="rounded-3xl border border-white/80 bg-white/75 backdrop-blur-xl shadow-[0_24px_70px_rgba(20,20,20,0.12)] p-6 md:p-9 mb-8 text-center">
                         <p className="text-[11px] tracking-[0.28em] uppercase text-red-600 font-semibold mb-3">
                             Media Center
                         </p>
-                        <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">Media Partai Garuda</h1>
-                        <p className="mt-3 text-zinc-600 leading-relaxed max-w-3xl">
+                        <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">Partai Garuda</h1>
+                        <p className="mt-3 text-zinc-600 leading-relaxed max-w-3xl mx-auto">
                             dokumentasi kegiatan, dan materi komunikasi partai dalam satu halaman.
                         </p>
                     </div>

@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
 
-            <!-- Brand / Logo -->
+
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ url('/') }}" class="inline-flex items-center">
                     <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar"
@@ -37,6 +37,11 @@
                     class="inline-flex items-center px-1 pt-1 text-sm font-medium
                    {{ request()->is('media') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
                     Media
+                </a>
+                <a href="{{ route('about.index') }}"
+                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('about') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
+                    About Us
                 </a>
             </div>
 
@@ -113,6 +118,9 @@
                         </a>
                         <a href="{{ route('media.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
                             Media
+                        </a>
+                        <a href="{{ route('about.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
+                            About Us
                         </a>
                     </div>
                 </div>

@@ -18,6 +18,9 @@ Route::get('/struktur', function () {
 Route::get('/media', function () {
     return view('media.index');
 })->name('media.index');
+Route::get('/about', function () {
+    return view('about.index');
+})->name('about.index');
 
 // =======================
 // ROUTE PUBLIC BERITA

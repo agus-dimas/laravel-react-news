@@ -91,7 +91,7 @@ const App = () => {
 
 
             {/* Main content */}
-            < main className="flex-grow mt-10 mb-4 w-full pt-4 px-8 pb-8 pt-4" >
+            < main className="flex-grow mt-10 mb-4 w-full pt-6 px-8 pb-8 pt-4" >
                 <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden mb-8">
                     <img
                         src="/images/banner home.jpg"

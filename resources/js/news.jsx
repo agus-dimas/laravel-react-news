@@ -69,7 +69,7 @@ const NewsApp = () => {
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            <main className="flex-grow pt-24 px-8 pb-8">
+            <main className="flex-grow pt-2 md:pt-24 px-2 md:px-8 pb-8">
                 <BannerSlider />
                 <h1 className="text-3xl font-bold text-center mb-10">Berita Garuda</h1>
 
