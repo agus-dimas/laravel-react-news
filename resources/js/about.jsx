@@ -33,7 +33,7 @@ function AboutPage() {
                             </div>
                         </div>
                         <div className="flex items-end">
-                            <div className="max-w-xl pt-3 border-t border-white/30 md:pt-0 md:pl-8 md:border-t-0 md:border-l">
+                            <div className="max-w-xl pl-5 md:pl-8 border-l border-white/30">
                                 <span className="block mb-2 text-red-600 font-semibold tracking-[0.16em] uppercase text-xs md:text-sm">
                                     GARDA REPUBLIK INDONESIA
                                 </span>
@@ -57,65 +57,92 @@ function AboutPage() {
 
                 <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="rounded-2xl bg-white border border-zinc-200 p-5 shadow-[0_10px_30px_rgba(20,20,20,0.08)]">
-                            <p className="text-zinc-500 text-sm">Fokus Kerja</p>
-                            <p className="text-2xl font-bold text-zinc-900 mt-1">Kaderisasi</p>
+                        <div className="rounded-2xl bg-[#1d1c1c] border border-zinc-200 p-5 shadow-[0_10px_30px_rgba(20,20,20,0.08)]">
+                            <p className="text-white/80 text-sm">Fokus Kerja</p>
+                            <p className="text-2xl font-bold text-white mt-1">Kaderisasi</p>
                         </div>
                         <div className="rounded-2xl bg-[#b3181f] text-white p-5 shadow-[0_12px_32px_rgba(20,20,20,0.08)]">
                             <p className="text-white/80 text-sm">Jangkauan</p>
                             <p className="text-2xl font-bold mt-1">Nasional</p>
                         </div>
-                        <div className="rounded-2xl bg-white border border-zinc-200 p-5 shadow-[0_10px_30px_rgba(20,20,20,0.08)]">
-                            <p className="text-zinc-500 text-sm">Karakter Gerakan</p>
-                            <p className="text-2xl font-bold text-zinc-900 mt-1">Kolaboratif</p>
+                        <div className="rounded-2xl bg-[#1d1c1c] border border-zinc-200 p-5 shadow-[0_10px_30px_rgba(20,20,20,0.08)]">
+                            <p className="text-white/80 text-sm">Karakter Gerakan</p>
+                            <p className="text-2xl font-bold text-white mt-1">Kolaboratif</p>
                         </div>
                     </div>
                 </section>
 
                 <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
-                    <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
-                        <article className="rounded-3xl bg-white border border-zinc-200 p-6 md:p-8 shadow-[0_18px_44px_rgba(20,20,20,0.08)]">
-                            <p className="text-[11px] tracking-[0.24em] uppercase text-red-600 font-semibold mb-3">
+                    <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-stretch">
+                        <article className="rounded-3xl bg-gradient-to-br from-white via-white to-red-50/40 border border-zinc-200 p-6 md:p-8 shadow-[0_20px_48px_rgba(20,20,20,0.08)]">
+                            <p className="text-[11px] tracking-[0.24em] uppercase text-red-700 font-semibold mb-3">
                                 Visi & Misi
                             </p>
                             <h2 className="text-2xl md:text-3xl font-bold text-zinc-900">Terwujudnya Cita-cita Perubahan Indonesia.</h2>
+                            <p className="mt-3 text-zinc-600 leading-relaxed border-l-2 border-red-400 pl-4">
+                                Arah perjuangan kami dibangun di atas konstitusi, nilai kebangsaan, dan komitmen
+                                untuk menghadirkan dampak yang bisa dirasakan langsung oleh rakyat.
+                            </p>
 
-                            <div className="mt-5 space-y-3">
-                                <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
-                                    <p className="text-zinc-700 leading-relaxed">
-                                        Terwujudnya cita-cita nasional bangsa Indonesia sebagaimana dimaksud dalam Pembukaan
-                                        Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.
-                                    </p>
+                            <div className="mt-6 space-y-3">
+                                <div className="group rounded-2xl border border-zinc-200 bg-white px-4 py-4 transition-all duration-300 hover:border-red-200 hover:shadow-[0_12px_30px_rgba(179,24,31,0.12)]">
+                                    <div className="flex items-start gap-3">
+                                        <span className="mt-0.5 inline-flex w-7 h-7 items-center justify-center rounded-full bg-red-100 text-red-700 text-sm font-bold shrink-0">1</span>
+                                        <p className="text-zinc-700 leading-relaxed">
+                                            Terwujudnya cita-cita nasional bangsa Indonesia sebagaimana dimaksud dalam Pembukaan
+                                            Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
-                                    <p className="text-zinc-700 leading-relaxed">
-                                        Terwujudnya masyarakat demokratis yang adil dan sejahtera serta berkeyakinan pada
-                                        Tuhan Yang Maha Esa, mencintai tanah air dan bangsa dalam bingkai Negara Kesatuan
-                                        Republik Indonesia.
-                                    </p>
+                                <div className="group rounded-2xl border border-zinc-200 bg-white px-4 py-4 transition-all duration-300 hover:border-red-200 hover:shadow-[0_12px_30px_rgba(179,24,31,0.12)]">
+                                    <div className="flex items-start gap-3">
+                                        <span className="mt-0.5 inline-flex w-7 h-7 items-center justify-center rounded-full bg-red-100 text-red-700 text-sm font-bold shrink-0">2</span>
+                                        <p className="text-zinc-700 leading-relaxed">
+                                            Terwujudnya masyarakat demokratis yang adil dan sejahtera serta berkeyakinan pada
+                                            Tuhan Yang Maha Esa, mencintai tanah air dan bangsa dalam bingkai Negara Kesatuan
+                                            Republik Indonesia.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
-                                    <p className="text-zinc-700 leading-relaxed">
-                                        Mewujudkan masyarakat kedaulatan rakyat dalam berdemokrasi, yang menjunjung tinggi
-                                        nilai-nilai kebenaran dan hukum yang berlaku.
-                                    </p>
+                                <div className="group rounded-2xl border border-zinc-200 bg-white px-4 py-4 transition-all duration-300 hover:border-red-200 hover:shadow-[0_12px_30px_rgba(179,24,31,0.12)]">
+                                    <div className="flex items-start gap-3">
+                                        <span className="mt-0.5 inline-flex w-7 h-7 items-center justify-center rounded-full bg-red-100 text-red-700 text-sm font-bold shrink-0">3</span>
+                                        <p className="text-zinc-700 leading-relaxed">
+                                            Mewujudkan masyarakat kedaulatan rakyat dalam berdemokrasi, yang menjunjung tinggi
+                                            nilai-nilai kebenaran dan hukum yang berlaku.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
-                                    <p className="text-zinc-700 leading-relaxed">
-                                        Mewujudkan ekonomi kerakyatan yang berkeadilan.
-                                    </p>
+                                <div className="group rounded-2xl border border-zinc-200 bg-white px-4 py-4 transition-all duration-300 hover:border-red-200 hover:shadow-[0_12px_30px_rgba(179,24,31,0.12)]">
+                                    <div className="flex items-start gap-3">
+                                        <span className="mt-0.5 inline-flex w-7 h-7 items-center justify-center rounded-full bg-red-100 text-red-700 text-sm font-bold shrink-0">4</span>
+                                        <p className="text-zinc-700 leading-relaxed">
+                                            Mewujudkan ekonomi kerakyatan yang berkeadilan.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article className="rounded-3xl overflow-hidden bg-white border border-zinc-200 shadow-[0_18px_44px_rgba(20,20,20,0.08)] p-4 lg:sticky lg:top-24">
+                        <article className="rounded-3xl overflow-hidden bg-gradient-to-b from-zinc-50 to-white border border-zinc-200 shadow-[0_20px_48px_rgba(20,20,20,0.08)] h-full flex items-center justify-center lg:sticky lg:top-24">
                             <img
                                 src="/images/update logo/logo visi.png"
 
                                 alt="Aktivitas Partai Garuda"
-                                className="w-full h-auto max-h-[520px] object-contain"
+                                className="w-full max-w-[460px] h-[360px] md:h-[520px] object-contain object-center"
                             />
                         </article>
+                    </div>
+                </section>
+                <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
+                    <div className="relative overflow-hidden rounded-3xl border border-zinc-200 shadow-[0_18px_42px_rgba(20,20,20,0.12)]">
+                        <img
+                            src="/images/banner-about2.jpg"
+                            alt="Dokumentasi Partai Garuda"
+                            className="w-full h-[220px] md:h-[360px] lg:h-[420px]"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/2 via-black/20 to-transparent" />
+
                     </div>
                 </section>
 

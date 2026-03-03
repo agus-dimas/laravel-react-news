@@ -246,10 +246,10 @@ const App = () => {
                 </div>
 
                 <section className="mt-12">
-                    <h2 className="text-xl font-semibold text-center mb-6 text-gray-700">
+                    <h2 className="text-xl font-semibold text-center mb-2 text-gray-700">
                         Media Center Garuda
                     </h2>
-                    <div className="relative overflow-hidden rounded-2xl bg-transparent py-6">
+                    <div className="relative overflow-hidden rounded-2xl bg-transparent py-2 pt-1 space-y-4">
                         <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-gray-100 to-transparent z-10" />
                         <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-gray-100 to-transparent z-10" />
 
@@ -257,6 +257,24 @@ const App = () => {
                             {[...shoeBrands, ...shoeBrands].map((brand, i) => (
                                 <div
                                     key={`${brand.name}-${i}`}
+                                    className="h-16 w-36 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center shrink-0"
+                                >
+                                    <img
+                                        src={brand.logo || brand.image}
+                                        alt={brand.name}
+                                        title={brand.name}
+                                        className="max-h-10 max-w-[120px] object-contain grayscale hover:grayscale-0 transition"
+                                        loading="lazy"
+                                    />
+                                </div>
+
+                            ))}
+                        </div>
+
+                        <div className="carousel-track-reverse flex items-center gap-10 w-max px-8">
+                            {[...shoeBrands, ...shoeBrands].map((brand, i) => (
+                                <div
+                                    key={`reverse-${brand.name}-${i}`}
                                     className="h-16 w-36 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center shrink-0"
                                 >
                                     <img
@@ -291,6 +309,9 @@ const App = () => {
                 .carousel-track {
                     animation: carousel-scroll 24s linear infinite;
                 }
+                .carousel-track-reverse {
+                    animation: carousel-scroll-reverse 24s linear infinite;
+                }
                 @keyframes heroSheen {
                     from {
                         transform: translateX(0);
@@ -323,6 +344,14 @@ const App = () => {
                     }
                     100% {
                         transform: translateX(-50%);
+                    }
+                }
+                @keyframes carousel-scroll-reverse {
+                    0% {
+                        transform: translateX(-50%);
+                    }
+                    100% {
+                        transform: translateX(0);
                     }
                 }
             `}</style>

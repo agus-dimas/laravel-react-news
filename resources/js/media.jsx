@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../css/app.css';
 import { Footer } from './components/Footer'; // Footer.jsx ada
@@ -20,6 +20,33 @@ const youtubeVideos = [
         embedUrl: 'https://www.youtube.com/embed/Ly1SHX2vkpk/edit',
     },
 ];
+
+const useRollingNumber = (target, duration, start) => {
+    const [value, setValue] = useState(0);
+
+    useEffect(() => {
+        if (!start) return;
+
+        let frameId;
+        let startTime = null;
+
+        const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            setValue(Math.round(target * eased));
+
+            if (progress < 1) {
+                frameId = requestAnimationFrame(animate);
+            }
+        };
+
+        frameId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(frameId);
+    }, [target, duration, start]);
+
+    return value;
+};
 
 const VideoCard = ({ title, channel, embedUrl }) => {
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -61,6 +88,27 @@ const VideoCard = ({ title, channel, embedUrl }) => {
 };
 
 const MediaApp = () => {
+    const statsRef = useRef(null);
+    const [statsVisible, setStatsVisible] = useState(false);
+    const viewCount = useRollingNumber(1287500, 3200, statsVisible);
+
+    useEffect(() => {
+        if (!statsRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setStatsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.35 }
+        );
+
+        observer.observe(statsRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className="min-h-screen flex flex-col bg-[#f5f5f4]">
             <main className="flex-grow pt-16 px-4 md:px-8 pb-10">
@@ -99,6 +147,16 @@ const MediaApp = () => {
                                     Ruang media ini menampilkan dokumentasi gerakan, pernyataan resmi, dan aktivitas
                                     lapangan sebagai bentuk transparansi kerja organisasi kepada publik.
                                 </p>
+                                <div className="mt-4 px-auto">
+                                    <a
+                                        href="/"
+                                        className="relative inline-flex items-center justify-center overflow-hidden rounded-lg px-16 py-1.5 text-[8px] font-semibold text-white"
+                                    >
+                                        <span className="absolute inset-0 bg-gradient-to-r from-[#d11b24] via-[#b3181f] to-[#7f0f15] transition-all duration-500 group-hover:scale-105"></span>
+                                        <span className="absolute -inset-y-1 -left-8 w-8 rotate-12 bg-white/30 blur-md transition-all duration-700 group-hover:left-[105%]"></span>
+                                        <span className="relative">SUBSCRIBE</span>
+                                    </a>
+                                </div>
                                 <div>
                                     <ul class="mt-5 flex gap-6">
                                         <li>
@@ -144,14 +202,40 @@ const MediaApp = () => {
                         </div>
                     </section>
 
-                    <div className="rounded-3xl border border-white/80 bg-white/75 backdrop-blur-xl shadow-[0_24px_70px_rgba(20,20,20,0.12)] p-6 md:p-9 mb-8 text-center">
-                        <p className="text-[11px] tracking-[0.28em] uppercase text-red-600 font-semibold mb-3">
+                    <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-[#101013] via-[#151518] to-[#191013] shadow-[0_24px_70px_rgba(20,20,20,0.35)] p-6 md:p-9 mb-8 text-center">
+                        <span className="pointer-events-none absolute -top-16 -left-16 w-48 h-48 rounded-full bg-red-700/20 blur-3xl" />
+                        <span className="pointer-events-none absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white/5 blur-3xl" />
+
+                        <p className="relative text-[11px] tracking-[0.28em] uppercase text-red-600 font-semibold mb-3">
                             Media Center
                         </p>
-                        <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">Partai Garuda</h1>
-                        <p className="mt-3 text-zinc-600 leading-relaxed max-w-3xl mx-auto">
+                        <h1 className="relative text-3xl md:text-4xl font-bold text-zinc-100 leading-tight">Partai Garuda</h1>
+                        <p className="relative mt-3 text-zinc-300 leading-relaxed max-w-3xl mx-auto">
                             dokumentasi kegiatan, dan materi komunikasi partai dalam satu halaman.
                         </p>
+                        <div
+                            ref={statsRef}
+                            className="relative mt-6 grid grid-cols-1 md:grid-cols-[250px_280px] justify-center gap-3 md:gap-4 max-w-2xl mx-auto"
+                        >
+                            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 shadow-sm w-full min-w-0 backdrop-blur-sm">
+                                <div className="w-10 h-10 rounded-full bg-[#FF0000] flex items-center justify-center">
+                                    <svg viewBox="0 0 24 24" className="w-5 h-5 text-white" fill="currentColor" aria-hidden="true">
+                                        <path d="M23.5 6.2a3.03 3.03 0 0 0-2.14-2.14C19.48 3.5 12 3.5 12 3.5s-7.48 0-9.36.56A3.03 3.03 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3.03 3.03 0 0 0 2.14 2.14c1.88.56 9.36.56 9.36.56s7.48 0 9.36-.56a3.03 3.03 0 0 0 2.14-2.14A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8ZM9.6 15.68V8.32L15.84 12 9.6 15.68Z" />
+                                    </svg>
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-[10px] tracking-[0.16em] uppercase text-zinc-400">Platform</p>
+                                    <p className="text-zinc-100 font-semibold">YouTube Official</p>
+                                </div>
+                            </div>
+
+                            <div className="rounded-xl border border-red-500/30 bg-gradient-to-r from-[#2a1114] to-[#3a161a] px-5 py-3 shadow-sm text-left w-full min-w-0">
+                                <p className="text-[10px] tracking-[0.16em] uppercase text-red-200">Total Penayangan</p>
+                                <p className="text-2xl md:text-3xl font-extrabold text-white leading-none mt-1 tabular-nums font-mono whitespace-nowrap">
+                                    {new Intl.NumberFormat('id-ID').format(viewCount)}+
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
