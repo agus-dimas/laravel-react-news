@@ -162,7 +162,7 @@ const App = () => {
                                 </div>
 
                                 <div className="order-2">
-                                    <p className="text-[10px] md:text-xs uppercase tracking-[0.22em] md:tracking-[0.25em] text-red-300 font-bold mb-2 md:mb-4">
+                                    <p className="text-[10px] md:text-xs uppercase tracking-[0.22em] md:tracking-[0.25em] text-red-500 font-bold mb-2 md:mb-4">
                                         Partai Garda Republik Indonesia
                                     </p>
                                     <h2 className="text-lg md:text-3xl font-bold leading-tight text-black mb-2 md:mb-4">

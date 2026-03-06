@@ -45,14 +45,12 @@ function AboutPage() {
                         </div>
                     </div>
                 </section>
-                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden mb-8">
+                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden mb-8 bg-transparent">
                     <img
                         src="/images/banner-about.jpg"
                         alt="Header Home"
-                        className="w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
+                        className="about-banner-drop w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
                     />
-                    <span className="hero-sheen pointer-events-none absolute inset-y-0 -left-1/3 w-1/3" />
-                    <span className="hero-sheen-two pointer-events-none absolute inset-y-0 -left-1/3 w-1/4" />
                 </section>
 
                 <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
@@ -163,6 +161,22 @@ function AboutPage() {
             </main>
 
             <Footer />
+
+            <style>{`
+                .about-banner-drop {
+                    animation: aboutBannerDrop 2500ms cubic-bezier(.22, 1, .36, 1) both;
+                    will-change: transform;
+                }
+
+                @keyframes aboutBannerDrop {
+                    from {
+                        transform: translateY(-38px);
+                    }
+                    to {
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </div>
     );
 }

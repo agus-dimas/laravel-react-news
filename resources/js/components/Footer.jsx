@@ -8,7 +8,7 @@ export function Footer() {
                             <img src="/images/update logo/Logo Partai Garuda baru - text putih.png" alt="Logo Partai Garuda" class="h-28 md:h-40 w-auto object-contain shrink-0" />
 
                             <div>
-                                <p class="max-w-xs text-white">
+                                <p class="max-w-xs text-red-500">
                                     Komitmen
                                 </p>
                                 <p class="max-w-xs text-zinc-400">
@@ -17,7 +17,7 @@ export function Footer() {
 
                                 <ul class="mt-5 flex gap-6">
                                     <li>
-                                        <a href="#" rel="noreferrer" target="_blank" class="text-zinc-300 transition hover:text-red-400">
+                                        <a href="https://www.instagram.com/partaigaruda/" rel="noreferrer" target="_blank" class="text-zinc-300 transition hover:text-red-400">
                                             <span class="sr-only">Instagram</span>
 
                                             <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -26,7 +26,7 @@ export function Footer() {
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" rel="noreferrer" target="_blank" class="text-zinc-300 transition hover:text-red-400">
+                                        <a href="https://www.facebook.com/PartaiGarudaOfficiall#" rel="noreferrer" target="_blank" class="text-zinc-300 transition hover:text-red-400">
                                             <span class="sr-only">Facebook</span>
 
                                             <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -110,43 +110,36 @@ export function Footer() {
                         </div>
 
                         <div>
-                            <p class="font-medium text-white">Contact</p>
+                            <p class="font-medium text-red-500">Menu</p>
 
                             <ul class="mt-6 space-y-4 text-sm">
                                 <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> Contact </a>
+                                    <a href="/struktur" class="text-zinc-300 transition hover:text-red-400"> Struktur </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> FAQs </a>
+                                    <a href="/konsultasi" class="text-zinc-300 transition hover:text-red-400"> Konsultasi </a>
+                                </li>
+                                <li>
+                                    <a href="/media" class="text-zinc-300 transition hover:text-red-400"> Media </a>
+                                </li>
+                                <li>
+                                    <a href="/about" class="text-zinc-300 transition hover:text-red-400"> About Us </a>
                                 </li>
 
-                                <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> Live Chat </a>
-                                </li>
                             </ul>
                         </div>
-
                         <div>
-                            <p class="font-medium text-white">Legal</p>
+                            <p class="font-medium text-red-500">Contact Admin</p>
 
                             <ul class="mt-6 space-y-4 text-sm">
                                 <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> Accessibility </a>
+                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> 08111 57 5555 </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> Returns Policy </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> Refund Policy </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="text-zinc-300 transition hover:text-red-400">
-                                        Hiring-3 Statistics
-                                    </a>
+                                    <a href="#" class="text-zinc-300 transition hover:text-red-400"> Untuk informasi lebih lanjut mengenai Partai Garuda,
+                                        Anda dapat menghubungi kami melalui website official maupun media sosial resmi.</a>
                                 </li>
                             </ul>
                         </div>

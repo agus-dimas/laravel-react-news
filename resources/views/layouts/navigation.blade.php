@@ -12,37 +12,33 @@
             </div>
 
             <!-- Menu Desktop -->
-            <div class="hidden sm:flex sm:space-x-8 items-center">
-                <a href="{{ url('/') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('/') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
+            <div id="desktop-nav-links" class="hidden sm:flex sm:space-x-8 items-center">
+                <a href="{{ url('/') }}" class="nav-link-animated inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('/') ? 'is-active text-white' : 'text-white/80 hover:text-white' }}">
                     Home
                 </a>
-                <a href="{{ route('news.index') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('news') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
+                <a href="{{ route('about.index') }}" class="nav-link-animated inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('about') ? 'is-active text-white' : 'text-white/80 hover:text-white' }}">
+                    About Us
+                </a>
+
+                <a href="{{ route('struktur') }}" class="nav-link-animated inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('struktur') ? 'is-active text-white' : 'text-white/80 hover:text-white' }}">
+                    Struktur
+                </a>
+                <a href="{{ route('consultations.create') }}" class="nav-link-animated inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('konsultasi') ? 'is-active text-white' : 'text-white/80 hover:text-white' }}">
+                    Konsultasi
+                </a>
+                <a href="{{ route('media.index') }}" class="nav-link-animated inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('media') ? 'is-active text-white' : 'text-white/80 hover:text-white' }}">
+                    Media
+                </a>
+                <a href="{{ route('news.index') }}" class="nav-link-animated inline-flex items-center px-1 pt-1 text-sm font-medium
+                   {{ request()->is('news') ? 'is-active text-white' : 'text-white/80 hover:text-white' }}">
                     Berita
                 </a>
 
-                <a href="{{ route('struktur') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('struktur') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
-                    Struktur
-                </a>
-                <a href="{{ route('consultations.create') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('konsultasi') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
-                    Konsultasi
-                </a>
-                <a href="{{ route('media.index') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('media') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
-                    Media
-                </a>
-                <a href="{{ route('about.index') }}"
-                    class="inline-flex items-center px-1 pt-1 text-sm font-medium
-                   {{ request()->is('about') ? 'border-b-2 border-white text-white' : 'text-white/80 hover:text-white' }}">
-                    About Us
-                </a>
             </div>
 
             <!-- Mobile menu button & User dropdown -->
@@ -106,8 +102,8 @@
                         <a href="{{ url('/') }}" class="block px-4 py-2 text-white hover:bg-white/10">
                             Home
                         </a>
-                        <a href="{{ route('news.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
-                            Berita
+                        <a href="{{ route('about.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
+                            About Us
                         </a>
                         <a href="{{ route('consultations.create') }}"
                             class="block px-4 py-2 text-white hover:bg-white/10">
@@ -119,9 +115,10 @@
                         <a href="{{ route('media.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
                             Media
                         </a>
-                        <a href="{{ route('about.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
-                            About Us
+                        <a href="{{ route('news.index') }}" class="block px-4 py-2 text-white hover:bg-white/10">
+                            Berita
                         </a>
+
                     </div>
                 </div>
 
@@ -129,3 +126,19 @@
         </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const nav = document.getElementById('desktop-nav-links');
+        if (!nav) return;
+
+        nav.querySelectorAll('.nav-link-animated').forEach((link) => {
+            link.addEventListener('click', () => {
+                nav.querySelectorAll('.nav-link-animated').forEach((item) => {
+                    item.classList.remove('is-active');
+                });
+                link.classList.add('is-active');
+            });
+        });
+    });
+</script>

@@ -116,7 +116,7 @@ const MediaApp = () => {
                     <img
                         src="/images/banner home.jpg"
                         alt="Header Media"
-                        className="w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
+                        className="media-banner-drop w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
                     />
                 </section>
 
@@ -124,16 +124,40 @@ const MediaApp = () => {
                     <section className="mb-8">
                         <div className="grid grid-cols-2 gap-3 md:gap-6 rounded-3xl p-3 md:p-6">
                             <div className="rounded-2xl overflow-hidden bg-transparent flex items-center justify-center p-1 md:p-4">
-                                <video
-                                    className="w-[120px] sm:w-[155px] md:w-[260px] aspect-[9/16] object-cover rounded-xl "
-                                    src="/videos/background website.mp4"
-                                    poster="/images/-"
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    controls
-                                />
+                                <div className="flex items-center gap-2 md:gap-4">
+                                    <div className="flex flex-col gap-2 md:gap-4">
+                                        <video
+                                            className="w-[58px] sm:w-[100px] md:w-[126px] aspect-[9/16] object-cover rounded-lg"
+                                            src="/videos/video 1.mp4"
+
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            controls
+                                        />
+                                        <video
+                                            className="w-[58px] sm:w-[100px] md:w-[126px] aspect-[9/16] object-cover rounded-lg "
+                                            src="/videos/video 2.mp4"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            controls
+                                        />
+                                    </div>
+
+                                    <video
+                                        className="w-[120px] sm:w-[155px] md:w-[260px] aspect-[9/16] object-cover rounded-xl shadow-[0_18px_42px_rgba(20,20,20,0,30)]"
+                                        src="/videos/background website.mp4"
+                                        poster="/images/-"
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        controls
+                                    />
+                                </div>
                             </div>
 
                             <div className="flex flex-col justify-center min-w-0">
@@ -142,6 +166,12 @@ const MediaApp = () => {
                                 </p>
                                 <h2 className="text-sm sm:text-lg md:text-3xl font-bold text-zinc-900 leading-tight">
                                     Sumber Informasi Resmi dan Terverifikasi
+                                    <img
+                                        src="https://img.icons8.com/color/48/verified-badge.png"
+                                        alt="Verifikasi"
+                                        className="inline-block ml-1 md:ml-2 w-4 h-4 md:w-7 md:h-7 align-[-0.1em]"
+                                        loading="lazy"
+                                    />
                                 </h2>
                                 <p className="mt-2 md:mt-3 text-[11px] sm:text-sm md:text-base text-zinc-600 leading-relaxed">
                                     Ruang media ini menampilkan dokumentasi gerakan, pernyataan resmi, dan aktivitas
@@ -149,7 +179,7 @@ const MediaApp = () => {
                                 </p>
                                 <div className="mt-4 px-auto">
                                     <a
-                                        href="/"
+                                        href="https://www.youtube.com/@PartaiGarudaOfficial"
                                         className="relative inline-flex items-center justify-center overflow-hidden rounded-lg px-16 py-1.5 text-[8px] font-semibold text-white"
                                     >
                                         <span className="absolute inset-0 bg-gradient-to-r from-[#d11b24] via-[#b3181f] to-[#7f0f15] transition-all duration-500 group-hover:scale-105"></span>
@@ -160,7 +190,7 @@ const MediaApp = () => {
                                 <div>
                                     <ul class="mt-5 flex gap-6">
                                         <li>
-                                            <a href="#" rel="noreferrer" target="_blank" class="text-black-400 transition hover:text-red-400">
+                                            <a href="https://www.instagram.com/partaigaruda/" rel="noreferrer" target="_blank" class="text-black-400 transition hover:text-red-400">
                                                 <span class="sr-only">Instagram</span>
 
                                                 <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -169,7 +199,7 @@ const MediaApp = () => {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" rel="noreferrer" target="_blank" class="text-black-300 transition hover:text-red-400">
+                                            <a href="https://www.facebook.com/PartaiGarudaOfficiall" rel="noreferrer" target="_blank" class="text-black-300 transition hover:text-red-400">
                                                 <span class="sr-only">Facebook</span>
 
                                                 <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -247,6 +277,21 @@ const MediaApp = () => {
             </main>
 
             <Footer />
+            <style>{`
+                .media-banner-drop {
+                    animation: mediaBannerDrop 3000ms cubic-bezier(.22, 1, .36, 1) both;
+                    will-change: transform;
+                }
+
+                @keyframes mediaBannerDrop {
+                    from {
+                        transform: translateY(-38px);
+                    }
+                    to {
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </div>
     );
 };
