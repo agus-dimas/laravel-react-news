@@ -216,6 +216,39 @@ const App = () => {
                         </div>
                     </div>
                 </section>
+                <section className="max-w-6xl mx-auto pb-4  ">
+                    <section className="mb-2 ">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 rounded-3xl p-4 md:p-6">
+                            <div className="flex flex-col justify-center min-w-0 text-center md:text-left">
+                                <p className="text-[10px] md:text-[11px] tracking-[0.18em] md:tracking-[0.28em] uppercase text-red-600 font-semibold mb-2 md:mb-3">
+                                    Kaderisasi Pemimpin                                </p>
+                                <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-zinc-900 leading-tight">
+                                    Bersatu Bersama, Membangun Indonesia yang Sejahtera.                                  <img
+                                    />
+                                </h2>
+                                <p className="mt-2 md:mt-3 text-sm sm:text-base md:text-base text-zinc-600 leading-relaxed">
+                                    Melalui semangat kebersamaan dan partisipasi masyarakat, kepemimpinan dapat menghadirkan
+                                    kebijakan yang berpihak pada kesejahteraan rakyat serta membawa Indonesia menuju masa depan yang lebih adil, kuat, dan sejahtera.
+                                </p>
+                            </div>
+
+                            <div className="rounded-2xl overflow-hidden bg-transparent flex items-center justify-center p-1 md:p-4">
+                                <div className="flex items-center gap-2 md:gap-4">
+                                    <video
+                                        className="w-full md:w-[1980px] max-w-full aspect-[16/9] object-cover rounded-xl shadow-[0_18px_42px_rgba(20,20,20,0,30)]"
+                                        src="/videos/home video.mp4"
+                                        poster="/images/-"
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        controls
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
 
                 <h1 className="text-3xl font-bold text-center mb-10">Berita Terbaru</h1>
 

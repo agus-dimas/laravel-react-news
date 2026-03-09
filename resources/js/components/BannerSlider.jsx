@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const slides = [
     { id: 1, image: '/images/banner-berita.jpg', title: 'Selamat Datang di MyNews' },
     // { id: 2, image: '/images/slide2.jpg', title: 'Berita Terbaru Setiap Hari' },
-    { id: 3, image: '/images/slide3.jpg', title: 'Ikuti Update Terkini' },
+    // { id: 3, image: '/images/slide3.jpg', title: 'Ikuti Update Terkini' },
 ];
 
 export function BannerSlider() {
