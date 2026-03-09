@@ -3,20 +3,6 @@ import ReactDOM from 'react-dom/client';
 import '../css/app.css';
 import { Footer } from './components/Footer';
 
-const values = [
-    {
-        title: 'Kerakyatan',
-        description: 'Setiap keputusan politik berpijak pada kebutuhan riil masyarakat di lapangan.',
-    },
-    {
-        title: 'Nasionalisme',
-        description: 'Komitmen menjaga persatuan, kedaulatan bangsa, dan martabat Indonesia.',
-    },
-    {
-        title: 'Religius',
-        description: 'Setiap kebijakan lahir dari prinsip kejujuran, keadilan, dan keberpihakan pada kepentingan umum.',
-    },
-];
 
 function AboutPage() {
     return (
@@ -143,21 +129,6 @@ function AboutPage() {
 
                     </div>
                 </section>
-
-                <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
-                    <p className="text-[11px] tracking-[0.26em] uppercase text-red-600 font-semibold mb-4 text-center">Nilai Inti</p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        {values.map((value) => (
-                            <article
-                                key={value.title}
-                                className="rounded-2xl bg-white border border-zinc-200 p-5 shadow-[0_12px_32px_rgba(20,20,20,0.07)]"
-                            >
-                                <h3 className="text-xl font-bold text-zinc-900">{value.title}</h3>
-                                <p className="mt-2 text-zinc-600 leading-relaxed">{value.description}</p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
             </main>
 
             <Footer />
@@ -170,7 +141,7 @@ function AboutPage() {
 
                 @keyframes aboutBannerDrop {
                     from {
-                        transform: translateY(-38px);
+                        transform: translateY(-500px);
                     }
                     to {
                         transform: translateY(0);

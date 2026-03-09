@@ -299,12 +299,12 @@ const App = () => {
                 .hero-sheen {
                     background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.06) 42%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.06) 58%, transparent 100%);
                     filter: blur(0.4px);
-                    animation: heroSheen 2.8s cubic-bezier(.22, 1, .36, 1) .35s both;
+                    animation: heroSheen 2.8s cubic-bezier(.52, 1, .36, 1) .35s both;
                 }
                 .hero-sheen-two {
                     background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.04) 40%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.04) 60%, transparent 100%);
                     filter: blur(0.5px);
-                    animation: heroSheenTwo 3.2s cubic-bezier(.22, 1, .36, 1) 1s both;
+                    animation: heroSheenTwo 4.2s cubic-bezier(.22, 1, .36, 1) 1s both;
                 }
                 .carousel-track {
                     animation: carousel-scroll 24s linear infinite;

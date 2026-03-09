@@ -72,22 +72,27 @@ const boardMembers = [
 ];
 
 const fallbackPhoto = '/images/p1.png';
+const SLIDE_DURATION_MS = 2000;
 
 function StrukturPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [slideDirection, setSlideDirection] = useState(null);
+    const [isAnimating, setIsAnimating] = useState(false);
     const slideTimerRef = useRef(null);
     const totalMembers = boardMembers.length;
 
     const triggerSlide = (direction, updaterFn) => {
+        if (isAnimating) return;
         if (slideTimerRef.current) {
             clearTimeout(slideTimerRef.current);
         }
+        setIsAnimating(true);
         setSlideDirection(direction);
         setCurrentIndex(updaterFn);
         slideTimerRef.current = setTimeout(() => {
             setSlideDirection(null);
-        }, 780);
+            setIsAnimating(false);
+        }, SLIDE_DURATION_MS);
     };
 
     useEffect(() => {
@@ -179,7 +184,8 @@ function StrukturPage() {
                             <button
                                 type="button"
                                 onClick={goPrev}
-                                className="group px-4 py-2 rounded-xl bg-white/60 hover:bg-white/80 text-zinc-800 border border-white/80 text-sm transition duration-300"
+                                disabled={isAnimating}
+                                className="group px-4 py-2 rounded-xl bg-white/60 hover:bg-white/80 text-zinc-800 border border-white/80 text-sm transition duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                                 aria-label="Halaman sebelumnya"
                             >
                                 <span className="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">Prev</span>
@@ -197,7 +203,8 @@ function StrukturPage() {
                             <button
                                 type="button"
                                 onClick={goNext}
-                                className="group px-4 py-2 rounded-xl bg-white/60 hover:bg-white/80 text-zinc-800 border border-white/80 text-sm transition duration-300"
+                                disabled={isAnimating}
+                                className="group px-4 py-2 rounded-xl bg-white/60 hover:bg-white/80 text-zinc-800 border border-white/80 text-sm transition duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                                 aria-label="Halaman berikutnya"
                             >
                                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">Next</span>
@@ -265,7 +272,7 @@ function StrukturPage() {
                 }
 
                 .select-card {
-                    transition: transform 980ms cubic-bezier(.16, 1, .3, 1), opacity 980ms cubic-bezier(.16, 1, .3, 1), filter 980ms cubic-bezier(.16, 1, .3, 1);
+                    transition: transform 2000ms cubic-bezier(.22, 1, .36, 1), opacity 2000ms cubic-bezier(.22, 1, .36, 1), filter 2000ms cubic-bezier(.22, 1, .36, 1);
                     will-change: transform, opacity, filter;
                 }
 
@@ -280,7 +287,7 @@ function StrukturPage() {
                 }
 
                 .select-image {
-                    transition: transform 980ms cubic-bezier(.16, 1, .3, 1), filter 980ms cubic-bezier(.16, 1, .3, 1), box-shadow 980ms cubic-bezier(.16, 1, .3, 1);
+                    transition: transform 2000ms cubic-bezier(.22, 1, .36, 1), filter 2000ms cubic-bezier(.22, 1, .36, 1), box-shadow 2000ms cubic-bezier(.22, 1, .36, 1);
                 }
 
                 .select-card-center .select-image {
@@ -292,11 +299,11 @@ function StrukturPage() {
                 }
 
                 .carousel-shift-next {
-                    animation: trackShiftNext 920ms cubic-bezier(.16, 1, .3, 1) both;
+                    animation: trackShiftNext 2000ms cubic-bezier(.22, 1, .36, 1) both;
                 }
 
                 .carousel-shift-prev {
-                    animation: trackShiftPrev 920ms cubic-bezier(.16, 1, .3, 1) both;
+                    animation: trackShiftPrev 2000ms cubic-bezier(.22, 1, .36, 1) both;
                 }
 
                 @keyframes revealLux {
@@ -322,8 +329,8 @@ function StrukturPage() {
 
                 @keyframes trackShiftNext {
                     from {
-                        transform: translateX(3px);
-                        opacity: 0.95;
+                        transform: translateX(16px);
+                        opacity: 0.9;
                     }
                     to {
                         transform: translateX(0);
@@ -333,8 +340,8 @@ function StrukturPage() {
 
                 @keyframes trackShiftPrev {
                     from {
-                        transform: translateX(-3px);
-                        opacity: 0.95;
+                        transform: translateX(-16px);
+                        opacity: 0.9;
                     }
                     to {
                         transform: translateX(0);

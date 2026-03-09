@@ -116,7 +116,7 @@ const MediaApp = () => {
                     <img
                         src="/images/banner home.jpg"
                         alt="Header Media"
-                        className="media-banner-drop w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
+                        className="w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
                     />
                 </section>
 
@@ -127,7 +127,7 @@ const MediaApp = () => {
                                 <div className="flex items-center gap-2 md:gap-4">
                                     <div className="flex flex-col gap-2 md:gap-4">
                                         <video
-                                            className="w-[58px] sm:w-[100px] md:w-[126px] aspect-[9/16] object-cover rounded-lg"
+                                            className="w-[58px] sm:w-[80px] md:w-[106px] aspect-[9/16] object-cover rounded-lg"
                                             src="/videos/video 1.mp4"
 
                                             autoPlay
@@ -137,7 +137,7 @@ const MediaApp = () => {
                                             controls
                                         />
                                         <video
-                                            className="w-[58px] sm:w-[100px] md:w-[126px] aspect-[9/16] object-cover rounded-lg "
+                                            className="w-[58px] sm:w-[80px] md:w-[106px] aspect-[9/16] object-cover rounded-lg "
                                             src="/videos/video 2.mp4"
                                             autoPlay
                                             muted
@@ -148,7 +148,7 @@ const MediaApp = () => {
                                     </div>
 
                                     <video
-                                        className="w-[120px] sm:w-[155px] md:w-[260px] aspect-[9/16] object-cover rounded-xl shadow-[0_18px_42px_rgba(20,20,20,0,30)]"
+                                        className="w-[120px] sm:w-[145px] md:w-[250px] aspect-[9/16] object-cover rounded-xl shadow-[0_18px_42px_rgba(20,20,20,0,30)]"
                                         src="/videos/background website.mp4"
                                         poster="/images/-"
                                         autoPlay
@@ -277,21 +277,6 @@ const MediaApp = () => {
             </main>
 
             <Footer />
-            <style>{`
-                .media-banner-drop {
-                    animation: mediaBannerDrop 3000ms cubic-bezier(.22, 1, .36, 1) both;
-                    will-change: transform;
-                }
-
-                @keyframes mediaBannerDrop {
-                    from {
-                        transform: translateY(-38px);
-                    }
-                    to {
-                        transform: translateY(0);
-                    }
-                }
-            `}</style>
         </div>
     );
 };
