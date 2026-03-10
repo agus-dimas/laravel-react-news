@@ -191,9 +191,9 @@ const App = () => {
                     </div>
                 </section>
 
-                <section className="relative z-20 -mt-14 md:-mt-20 mb-4">
+                <section className="relative z-20 -mt-14 md:-mt-20 mb-0">
                     <div className="max-w-6xl mx-auto px-4 md:px-8">
-                        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#202020] py-8 md:py-8 mb-8 shadow-[0_20px_36px_rgba(0,0,0,0.18)]">
+                        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#202020] py-8 md:py-8 mb-0 shadow-[0_20px_36px_rgba(0,0,0,0.18)]">
                             <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-red-600 font-semibold text-center mb-2 md:mb-3">
                                 Gerakan
                             </p>
@@ -216,41 +216,46 @@ const App = () => {
                         </div>
                     </div>
                 </section>
-                <section className="max-w-6xl mx-auto pb-4  ">
-                    <section className="mb-2 ">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 rounded-3xl p-4 md:p-6">
-                            <div className="flex flex-col justify-center min-w-0 text-center md:text-left">
-                                <p className="text-[10px] md:text-[11px] tracking-[0.18em] md:tracking-[0.28em] uppercase text-red-600 font-semibold mb-2 md:mb-3">
-                                    Kaderisasi Pemimpin                                </p>
-                                <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-zinc-900 leading-tight">
-                                    Bersatu Bersama, Membangun Indonesia yang Sejahtera.                                  <img
-                                    />
-                                </h2>
-                                <p className="mt-2 md:mt-3 text-sm sm:text-base md:text-base text-zinc-600 leading-relaxed">
-                                    Melalui semangat kebersamaan dan partisipasi masyarakat, kepemimpinan dapat menghadirkan
-                                    kebijakan yang berpihak pada kesejahteraan rakyat serta membawa Indonesia menuju masa depan yang lebih adil, kuat, dan sejahtera.
-                                </p>
-                            </div>
+                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#303030] pb-4 mb-10">
+                    <div className="max-w-6xl mx-auto">
+                        <section className="mb-2">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 rounded-3xl p-4 md:p-6">
+                                <div className="flex flex-col justify-center min-w-0 text-center md:text-left">
+                                    <p className="text-[10px] md:text-[11px] tracking-[0.18em] md:tracking-[0.28em] uppercase text-red-600 font-bold mb-2 md:mb-3">
+                                        Kaderisasi Pemimpin                                </p>
+                                    <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-white leading-tight">
+                                        Membangun Indonesia yang Sejahtera.                                 <img
+                                        />
+                                    </h2>
+                                    <p className="mt-2 md:mt-3 text-sm sm:text-base md:text-base text-white leading-relaxed">
+                                        Melalui semangat kebersamaan dan partisipasi masyarakat, kepemimpinan dapat menghadirkan
+                                        kebijakan yang berpihak pada kesejahteraan rakyat serta membawa Indonesia menuju masa depan yang lebih adil, kuat, dan sejahtera.
+                                    </p>
+                                </div>
 
-                            <div className="rounded-2xl overflow-hidden bg-transparent flex items-center justify-center p-1 md:p-4">
-                                <div className="flex items-center gap-2 md:gap-4">
-                                    <video
-                                        className="w-full md:w-[1980px] max-w-full aspect-[16/9] object-cover rounded-xl shadow-[0_18px_42px_rgba(20,20,20,0,30)]"
-                                        src="/videos/home video.mp4"
-                                        poster="/images/-"
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        controls
-                                    />
+                                <div className="rounded-2xl overflow-hidden bg-transparent flex items-center justify-center p-1 md:p-4">
+                                    <div className="flex items-center gap-2 md:gap-4">
+                                        <video
+                                            className="w-full md:w-[1980px] max-w-full aspect-[16/9] object-cover rounded-xl shadow-[10px_12px_0_rgba(179,24,31,0.9)]"
+                                            src="/videos/home video.mp4"
+                                            poster="/images/-"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            controls
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </section>
 
-                <h1 className="text-3xl font-bold text-center mb-10">Berita Terbaru</h1>
+                <h1 className="text-3xl font-bold text-center mb-1">Berita Terbaru</h1>
+                <p className="mt-2 md:mt-3 text-center sm:text-base md:text-base text-black leading-relaxed mb-10">
+                    Informasi terkini yang menghadirkan berbagai kegiatan dan perkembangan terbaru.
+                </p>
 
                 {/* Grid card */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
