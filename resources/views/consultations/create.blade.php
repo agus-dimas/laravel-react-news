@@ -111,13 +111,13 @@
             from {
                 opacity: 0;
                 transform: perspective(1200px) translateY(34px) scale(0.972) rotateX(7deg);
-                filter: blur(10px) saturate(.82);
+                filter: saturate(.82);
             }
 
             to {
                 opacity: 1;
                 transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg);
-                filter: blur(0) saturate(1);
+                filter: saturate(1);
             }
         }
 

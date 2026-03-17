@@ -240,7 +240,7 @@ function StrukturPage() {
                 .lux-reveal {
                     opacity: 0;
                     transform: perspective(1200px) translateY(34px) scale(0.972) rotateX(7deg);
-                    filter: blur(10px) saturate(.82);
+                    filter: saturate(.82);
                     transform-origin: center 80%;
                     will-change: transform, opacity, filter;
                     animation: revealLux 1.1s cubic-bezier(.16, 1, .3, 1) forwards;
@@ -310,7 +310,7 @@ function StrukturPage() {
                     to {
                         opacity: 1;
                         transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg);
-                        filter: blur(0) saturate(1);
+                        filter: saturate(1);
                     }
                 }
 
@@ -318,12 +318,12 @@ function StrukturPage() {
                     from {
                         opacity: 0;
                         transform: translateY(14px) scale(.992);
-                        filter: blur(4px);
+                        filter: saturate(.9);
                     }
                     to {
                         opacity: 1;
                         transform: translateY(0) scale(1);
-                        filter: blur(0);
+                        filter: saturate(1);
                     }
                 }
 
