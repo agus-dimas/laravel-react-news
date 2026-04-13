@@ -56,7 +56,7 @@ function AboutPage() {
                     </div>
                 </section>
 
-                <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
+                <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8 mb-20">
                     <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-stretch">
                         <article className="rounded-3xl bg-gradient-to-br from-white via-white to-red-50/40 border border-zinc-200 p-6 md:p-8 shadow-[0_20px_48px_rgba(20,20,20,0.08)]">
                             <p className="text-[11px] tracking-[0.24em] uppercase text-red-700 font-semibold mb-3">
@@ -116,6 +116,30 @@ function AboutPage() {
                                 className="w-full max-w-[460px] h-[360px] md:h-[520px] object-contain object-center"
                             />
                         </article>
+                    </div>
+                </section>
+                <section className="relative z-20 -mt-10 md:-mt-10 mb-8">
+                    <div className="max-w-6xl mx-auto px-4 md:px-8">
+                        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#202020] py-8 md:py-8 mb-0 shadow-[0_20px_36px_rgba(0,0,0,0.18)]">
+                            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-red-600 font-semibold text-center mb-2 md:mb-3">
+                                Menyatukan Semangat, Menguatkan Indonesia
+                            </p>
+                            <h3 className="text-lg md:text-3xl font-bold text-white text-center px-4">
+                                Identitas Partai Garuda untuk kedaulatan bangsa
+                            </h3>
+                            <p className="mt-3 md:mt-4 text-sm md:text-base text-white text-center max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
+                                Atribut partai Garuda mencerminkan nilai, jati diri, dan semangat perjuangan untuk bangsa dan rakyat.
+                                Setiap elemen lambang menegaskan komitmen partai dalam mengawal kedaulatan dan kesejahteraan masyarakat.
+                            </p>
+
+                            <div className="mt-3 md:mt-4 flex justify-center px-4 md:px-0">
+                                <img
+                                    src="/images/baju partai/background baju website.png"
+                                    alt="Highlight Partai Garuda"
+                                    className="w-full max-w-4xl md:max-w-5xl h-auto max-h-[320px] md:max-h-[440px] object-contain"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <section className="max-w-7xl mx-auto px-4 md:px-8 mt-8">

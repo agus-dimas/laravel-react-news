@@ -7,13 +7,13 @@ const boardMembers = [
         role: 'Ketua Umum',
         name: 'Ahmad Ridha Sabana',
         bio: 'Memimpin arah Partai dan memastikan setiap program berjalan sesuai dengan misi partai.',
-        photo: '/images/pengurus/ketum.jpg',
+        photo: '/images/struktur/person.png',
     },
     {
         role: 'Sekretaris Jenderal',
         name: 'Ihsan Jauhari',
         bio: 'Mengelola administrasi organisasi dan dokumentasi kegiatan strategis.',
-        photo: '/images/pengurus/ihsan.jpg',
+        photo: '/images/pengurus/ihsan.png',
     },
     {
         role: 'Wakil Ketua Umum',
@@ -72,294 +72,75 @@ const boardMembers = [
 ];
 
 const fallbackPhoto = '/images/p1.png';
-const SLIDE_DURATION_MS = 2000;
 
 function StrukturPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [slideDirection, setSlideDirection] = useState(null);
-    const [isAnimating, setIsAnimating] = useState(false);
-    const slideTimerRef = useRef(null);
     const totalMembers = boardMembers.length;
 
-    const triggerSlide = (direction, updaterFn) => {
-        if (isAnimating) return;
-        if (slideTimerRef.current) {
-            clearTimeout(slideTimerRef.current);
-        }
-        setIsAnimating(true);
-        setSlideDirection(direction);
-        setCurrentIndex(updaterFn);
-        slideTimerRef.current = setTimeout(() => {
-            setSlideDirection(null);
-            setIsAnimating(false);
-        }, SLIDE_DURATION_MS);
-    };
-
-    useEffect(() => {
-        return () => {
-            if (slideTimerRef.current) {
-                clearTimeout(slideTimerRef.current);
-            }
-        };
-    }, []);
-
     const goNext = () => {
-        triggerSlide('next', (prev) => (prev + 1) % totalMembers);
+        setCurrentIndex((prev) => (prev + 1) % totalMembers);
     };
 
-    const goPrev = () => {
-        triggerSlide('prev', (prev) => (prev - 1 + totalMembers) % totalMembers);
-    };
-
-    const getMember = (offset) => {
-        return boardMembers[(currentIndex + offset + totalMembers) % totalMembers];
-    };
-
-    const activeMember = getMember(0);
+    const activeMember = boardMembers[currentIndex];
 
     return (
-        <div className="min-h-screen pt-24 text-zinc-900 bg-[#d9d9dc]">
-            <div className="relative overflow-hidden">
-                <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
-                    <section className="lux-reveal reveal-1 lux-panel glass-dark rounded-3xl p-6 md:p-10 mb-7 border border-white/60 overflow-hidden">
-                        <p className="text-red-400 text-[11px] md:text-xs tracking-[0.3em] uppercase mb-3 font-semibold">
-                            Struktur Organisasi
-                        </p>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight text-zinc-900">
-                            Kepengurusan Organisasi Partai Garuda
-                        </h1>
-                        <p className="text-zinc-700 md:max-w-3xl leading-relaxed">
-                            Tim kepengurusan dirancang sebagai sistem kerja yang solid, kolaboratif, dan terukur
-                            untuk menjaga ritme gerak organisasi serta memperkuat dampak nyata di masyarakat.
-                        </p>
-                    </section>
+        <div className="min-h-screen pt-16 text-zinc-900 bg-transparent md:bg-white">
+            <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-transparent md:bg-white">
+                <div className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[calc(100vh-4rem)] grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr]">
+                    <div className="order-2 md:order-1 relative flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-10 md:py-12 lg:py-16 bg-[url('../images/struktur/background-struktur.jpg')] md:bg-white md:mr-[-8vw] md:pr-[20vw]">
 
-                    <section className="lux-reveal reveal-2 lux-panel glass-dark rounded-3xl p-5 md:p-8 border border-white/60 overflow-hidden">
-                        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 md:mb-8">
-                            <h2 className="text-2xl md:text-3xl font-bold text-zinc-900">Kepengurusan Inti</h2>
-                            <div className="px-3 py-1.5 rounded-full bg-white/55 text-xs tracking-wider uppercase text-zinc-700 border border-white/70">
-                                {currentIndex + 1} / {totalMembers}
-                            </div>
-                        </div>
-
-                        <div className="relative">
-                            <div className={`selection-track grid grid-cols-3 gap-3 md:gap-6 items-end ${slideDirection ? `carousel-shift-${slideDirection}` : ''}`}>
-                                {[-1, 0, 1].map((offset) => {
-                                    const member = getMember(offset);
-                                    const isCenter = offset === 0;
-
-                                    return (
-                                        <article
-                                            key={`${member.role}-${member.name}-${offset}`}
-                                            className={`select-card text-center ${isCenter ? 'select-card-center opacity-100' : 'select-card-side opacity-70'}`}
-                                        >
-                                            <img
-                                                className={`mx-auto object-cover rounded-xl select-image ${isCenter
-                                                    ? 'w-40 h-52 md:w-56 md:h-72 lg:w-64 lg:h-80'
-                                                    : 'w-32 h-40 md:w-40 md:h-52 lg:w-44 lg:h-56'
-                                                    }`}
-                                                src={member.photo || fallbackPhoto}
-                                                alt={member.name}
-                                                loading="lazy"
-                                                onError={(e) => {
-                                                    e.currentTarget.onerror = null;
-                                                    e.currentTarget.src = fallbackPhoto;
-                                                }}
-                                            />
-                                            <div className={`mt-3 w-full flex flex-col items-center text-center transition-all duration-700 ${isCenter ? '' : 'scale-95'}`}>
-                                                <h4 className={`${isCenter ? 'text-[12px] sm:text-sm md:text-2xl' : 'text-[9px] sm:text-xs md:text-lg'} font-semibold leading-tight max-w-full`}>
-                                                    {member.name}
-                                                </h4>
-                                                <span className={`block text-zinc-600 leading-tight max-w-full ${isCenter ? 'text-[10px] sm:text-xs md:text-sm' : 'text-[8px] sm:text-[11px] md:text-sm'}`}>
-                                                    {member.role}
-                                                </span>
-                                            </div>
-                                        </article>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        <div className="mt-6 md:mt-8 flex items-center justify-center gap-2">
-                            <button
-                                type="button"
-                                onClick={goPrev}
-                                disabled={isAnimating}
-                                className="group px-4 py-2 rounded-xl bg-white/60 hover:bg-white/80 text-zinc-800 border border-white/80 text-sm transition duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
-                                aria-label="Halaman sebelumnya"
-                            >
-                                <span className="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">Prev</span>
-                            </button>
-                            {boardMembers.map((_, pageIndex) => (
-                                <button
-                                    key={`dot-${pageIndex}`}
-                                    type="button"
-                                    onClick={() => setCurrentIndex(pageIndex)}
-                                    className={`h-2.5 rounded-full transition-all duration-500 ${currentIndex === pageIndex ? 'w-8 bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.65)]' : 'w-2.5 bg-zinc-500/60 hover:bg-zinc-500'
-                                        }`}
-                                    aria-label={`Halaman ${pageIndex + 1}`}
-                                />
-                            ))}
-                            <button
-                                type="button"
-                                onClick={goNext}
-                                disabled={isAnimating}
-                                className="group px-4 py-2 rounded-xl bg-white/60 hover:bg-white/80 text-zinc-800 border border-white/80 text-sm transition duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
-                                aria-label="Halaman berikutnya"
-                            >
-                                <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">Next</span>
-                            </button>
-                        </div>
-
-                        <article key={activeMember.name} className="lux-reveal-soft mt-7 md:mt-8 rounded-2xl border border-white/70 bg-white/45 px-4 md:px-6 py-4 md:py-5 overflow-hidden">
-                            <p className="text-red-400 text-[11px] md:text-xs tracking-[0.24em] uppercase mb-2">
-                                Profil Pengurus
+                        <div className="relative z-10">
+                            <p className="text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3">
+                                {activeMember.role.toUpperCase()}
                             </p>
-                            <h3 className="text-xl md:text-2xl font-semibold text-zinc-900">{activeMember.name}</h3>
-                            <p className="text-zinc-600 text-sm md:text-base mt-1">{activeMember.role}</p>
-                            <p className="text-zinc-700 text-sm md:text-base mt-3 leading-relaxed">
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-zinc-900 leading-tight">
+                                {activeMember.name.toUpperCase()}
+                            </h1>
+                            <div className="mt-3 h-1 w-40 bg-[#b3181f]" />
+                            <p className="mt-6 text-base sm:text-lg text-zinc-600 leading-relaxed max-w-xl">
                                 {activeMember.bio}
                             </p>
-                        </article>
-                    </section>
+
+                            <div className="mt-10 flex items-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={goNext}
+                                    className="inline-flex items-center gap-3 bg-[#b3181f] text-white px-6 py-2.5 text-sm font-semibold uppercase tracking-widest shadow-[0_10px_24px_rgba(179,24,31,0.35)] transition hover:translate-y-[-1px]"
+                                    aria-label="Next pengurus"
+                                >
+                                    Next
+                                </button>
+                                <div className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-zinc-500">
+                                    <span>{currentIndex + 1}</span>
+                                    <span>/</span>
+                                    <span>{totalMembers}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="order-1 md:order-2 relative overflow-visible bg-transparent flex items-end justify-center md:justify-start pl-0 md:pl-2 pr-0 md:pr-0 h-[360px] sm:h-[420px] md:h-auto">
+                        <div className="absolute inset-y-0 left-0 md:left-[25%] right-0 bg-gradient-to-br from-[#a40f14] via-[#b3181f] to-[#8e0f14]" />
+                        <img
+                            src="/images/struktur/atribut 1.png"
+                            alt=""
+                            aria-hidden="true"
+                            className="absolute right-0 top-0 h-[82%] sm:h-[85%] md:h-full w-auto pointer-events-none z-40"
+                        />
+                        <img
+                            src={activeMember.photo || fallbackPhoto}
+                            alt={activeMember.name}
+                            className="relative z-30 mx-auto md:mx-0 md:-ml-28 max-h-[340px] sm:max-h-[380px] md:max-h-[92vh] w-auto object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.35)]"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = fallbackPhoto;
+                            }}
+                        />
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div className="mt-10">
-                <Footer />
-            </div>
-
-            <style>{`
-                .glass-dark {
-                    background: linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.48));
-                    backdrop-filter: blur(16px);
-                    -webkit-backdrop-filter: blur(16px);
-                    box-shadow: 0 24px 64px rgba(70, 70, 80, 0.18);
-                }
-
-                .lux-reveal {
-                    opacity: 0;
-                    transform: perspective(1200px) translateY(34px) scale(0.972) rotateX(7deg);
-                    filter: saturate(.82);
-                    transform-origin: center 80%;
-                    will-change: transform, opacity, filter;
-                    animation: revealLux 1.1s cubic-bezier(.16, 1, .3, 1) forwards;
-                }
-
-                .lux-reveal-soft {
-                    animation: revealSoft 0.85s cubic-bezier(.22, 1, .36, 1);
-                }
-
-                .lux-panel {
-                    position: relative;
-                    isolation: isolate;
-                }
-
-                .reveal-1 {
-                    animation-delay: .02s;
-                }
-
-                .reveal-2 {
-                    animation-delay: .16s;
-                }
-
-                .reveal-3 {
-                    animation-delay: .3s;
-                }
-
-                .selection-track {
-                    will-change: transform, opacity;
-                }
-
-                .select-card {
-                    transition: transform 2000ms cubic-bezier(.22, 1, .36, 1), opacity 2000ms cubic-bezier(.22, 1, .36, 1), filter 2000ms cubic-bezier(.22, 1, .36, 1);
-                    will-change: transform, opacity, filter;
-                }
-
-                .select-card-center {
-                    transform: translateY(0) scale(1.015);
-                    filter: saturate(1.05);
-                }
-
-                .select-card-side {
-                    transform: translateY(6px) scale(0.955);
-                    filter: saturate(0.86);
-                }
-
-                .select-image {
-                    transition: transform 2000ms cubic-bezier(.22, 1, .36, 1), filter 2000ms cubic-bezier(.22, 1, .36, 1), box-shadow 2000ms cubic-bezier(.22, 1, .36, 1);
-                }
-
-                .select-card-center .select-image {
-                    box-shadow: 0 0px 25px rgba(10, 10, 10, 0.12);
-                }
-
-                .select-card-side .select-image {
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-                }
-
-                .carousel-shift-next {
-                    animation: trackShiftNext 2000ms cubic-bezier(.22, 1, .36, 1) both;
-                }
-
-                .carousel-shift-prev {
-                    animation: trackShiftPrev 2000ms cubic-bezier(.22, 1, .36, 1) both;
-                }
-
-                @keyframes revealLux {
-                    to {
-                        opacity: 1;
-                        transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg);
-                        filter: saturate(1);
-                    }
-                }
-
-                @keyframes revealSoft {
-                    from {
-                        opacity: 0;
-                        transform: translateY(14px) scale(.992);
-                        filter: saturate(.9);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0) scale(1);
-                        filter: saturate(1);
-                    }
-                }
-
-                @keyframes trackShiftNext {
-                    from {
-                        transform: translateX(16px);
-                        opacity: 0.9;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-
-                @keyframes trackShiftPrev {
-                    from {
-                        transform: translateX(-16px);
-                        opacity: 0.9;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-
-                @media (prefers-reduced-motion: reduce) {
-                    .lux-reveal,
-                    .lux-reveal-soft {
-                        animation: none !important;
-                        filter: none !important;
-                        transform: none !important;
-                        opacity: 1 !important;
-                    }
-                }
-
-            `}</style>
+            <Footer />
         </div>
     );
 }
