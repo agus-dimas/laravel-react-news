@@ -33,7 +33,9 @@ Route::get('/api/news', [NewsController::class, 'apiIndex']);
 // ROUTE PUBLIC KONSULTASI
 // =======================
 Route::get('/konsultasi', [ConsultationController::class, 'create'])->name('consultations.create');
-Route::post('/konsultasi', [ConsultationController::class, 'store'])->name('consultations.store');
+Route::post('/konsultasi', [ConsultationController::class, 'store'])
+    ->middleware('auth')
+    ->name('consultations.store');
 
 
 

@@ -40,13 +40,30 @@
 
                 <article
                     class="lux-reveal reveal-2 lux-panel rounded-3xl border border-white/80 bg-white/75 backdrop-blur-2xl shadow-[0_25px_70px_rgba(20,20,20,0.18)] p-6 md:p-8 overflow-hidden">
-                    @if (session('success'))
-                        <div class="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-700">
-                            {{ session('success') }}
+                    @php
+                        $successMessage = session('success');
+                        if (!$successMessage && request()->boolean('sent')) {
+                            $successMessage = 'Konsultasi berhasil dikirim.';
+                        }
+                    @endphp
+                    @if ($successMessage)
+                        <div id="consultation-success"
+                            class="mb-5 flex items-center justify-between gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-700">
+                            <span>{{ $successMessage }}</span>
+                            <button type="button" id="consultation-success-close"
+                                class="inline-flex h-7 w-7 items-center justify-center rounded-full text-emerald-700 hover:bg-emerald-100">
+                                &times;
+                            </button>
                         </div>
                     @endif
+                    @guest
+                        <div class="mb-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-700">
+                            Login dibutuhkan untuk mengirim konsultasi.
+                        </div>
+                    @endguest
 
-                    <form action="{{ route('consultations.store') }}" method="POST" class="space-y-5">
+                    <form action="{{ route('consultations.store') }}" method="POST" enctype="multipart/form-data"
+                        class="space-y-5">
                         @csrf
 
                         <div>
@@ -71,14 +88,40 @@
                             @enderror
                         </div>
 
-                        <button type="submit"
-                            class="group relative inline-flex items-center justify-center overflow-hidden rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-red-300/60">
-                            <span
-                                class="absolute inset-0 bg-gradient-to-r from-[#d11b24] via-[#b3181f] to-[#7f0f15] transition-all duration-500 group-hover:scale-105"></span>
-                            <span
-                                class="absolute -inset-y-1 -left-8 w-10 rotate-12 bg-white/30 blur-md transition-all duration-700 group-hover:left-[105%]"></span>
-                            <span class="relative">Kirim Konsultasi</span>
-                        </button>
+                        <div>
+                            <label for="attachment" class="block text-sm font-medium text-zinc-700 mb-1.5">
+                                Lampiran (opsional)
+                            </label>
+                            <div class="flex items-center gap-3">
+                                <input id="attachment" name="attachment" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf"
+                                    class="sr-only" />
+                                <label for="attachment"
+                                    class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 transition cursor-pointer">
+                                    <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M21.44 11.05l-8.49 8.49a6 6 0 0 1-8.49-8.49l8.49-8.49a4 4 0 1 1 5.66 5.66l-8.49 8.49a2 2 0 1 1-2.83-2.83l8.49-8.49" />
+                                    </svg>
+                                    Pilih file
+                                </label>
+                                <span id="attachment-name" class="text-xs text-zinc-500">Belum ada file</span>
+                            </div>
+                            <p class="mt-2 text-xs text-zinc-500">Format: JPG, PNG, WEBP, atau PDF. Maks 5MB.</p>
+                            <p id="attachment-error" class="mt-1 text-xs text-red-600 hidden"></p>
+                            @error('attachment')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit"
+                                class="group relative inline-flex items-center justify-center overflow-hidden rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-red-300/60">
+                                <span
+                                    class="absolute inset-0 bg-gradient-to-r from-[#d11b24] via-[#b3181f] to-[#7f0f15] transition-all duration-500 group-hover:scale-105"></span>
+                                <span
+                                    class="absolute -inset-y-1 -left-8 w-10 rotate-12 bg-white/30 blur-md transition-all duration-700 group-hover:left-[105%]"></span>
+                                <span class="relative">Kirim Konsultasi</span>
+                            </button>
+                        </div>
                     </form>
                 </article>
             </div>
@@ -173,5 +216,46 @@
         }
     </style>
 
+    <script>
+        (function() {
+            const input = document.getElementById('attachment');
+            const name = document.getElementById('attachment-name');
+            const error = document.getElementById('attachment-error');
+            if (!input || !name || !error) return;
+            const maxBytes = 5 * 1024 * 1024;
+
+            input.addEventListener('change', () => {
+                error.classList.add('hidden');
+                error.textContent = '';
+
+                if (!input.files || !input.files.length) {
+                    name.textContent = 'Belum ada file';
+                    return;
+                }
+
+                const file = input.files[0];
+                if (file.size > maxBytes) {
+                    error.textContent = 'Ukuran file terlalu besar. Maksimal 5MB.';
+                    error.classList.remove('hidden');
+                    input.value = '';
+                    name.textContent = 'Belum ada file';
+                    return;
+                }
+
+                name.textContent = file.name;
+            });
+        })();
+    </script>
+    <script>
+        (function() {
+            const success = document.getElementById('consultation-success');
+            const closeBtn = document.getElementById('consultation-success-close');
+            if (!success || !closeBtn) return;
+
+            closeBtn.addEventListener('click', () => {
+                success.remove();
+            });
+        })();
+    </script>
     <div id="react-root-footer"></div>
 @endsection

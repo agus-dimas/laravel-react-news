@@ -17,12 +17,27 @@ class ConsultationController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string', 'max:2000'],
+            'attachment' => ['nullable', 'file', 'max:5120', 'mimes:jpg,jpeg,png,webp,pdf'],
         ]);
 
-        Consultation::create($validated);
+        try {
+            if ($request->hasFile('attachment')) {
+                $validated['attachment_path'] = $request->file('attachment')->store('consultations', 'public');
+            }
+
+            $validated['user_id'] = $request->user()->id;
+
+            Consultation::create($validated);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()
+                ->withErrors(['attachment' => 'Upload gagal. Coba gunakan file lain atau ulangi kembali.'])
+                ->withInput();
+        }
 
         return redirect()
-            ->route('consultations.create')
+            ->route('consultations.create', ['sent' => 1])
             ->with('success', 'Konsultasi berhasil dikirim.');
     }
 

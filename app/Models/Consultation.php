@@ -12,5 +12,7 @@ class Consultation extends Model
     protected $fillable = [
         'name',
         'description',
+        'user_id',
+        'attachment_path',
     ];
 }
