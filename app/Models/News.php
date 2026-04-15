@@ -19,7 +19,7 @@ class News extends Model
      * Kolom yang boleh diisi mass assignment
      * (penting untuk create() & update())
      */
-    protected $fillable = ['title', 'content', 'image', 'user_id', 'user_id'];
+    protected $fillable = ['title', 'content', 'image', 'user_id', 'category'];
 
     public function user()
     {

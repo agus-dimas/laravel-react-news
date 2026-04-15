@@ -18,6 +18,7 @@ class NewsController extends Controller
             'title' => 'required',
             'content' => 'required',
             'image' => 'nullable|image',
+            'category' => 'required|string|max:255',
         ]);
 
         $imagePath = null;
@@ -28,6 +29,7 @@ class NewsController extends Controller
         News::create([
             'title' => $request->title,
             'content' => $request->content,
+            'category' => $request->category,
             'image' => $imagePath,
             'user_id' => auth()->id(),
         ]);
