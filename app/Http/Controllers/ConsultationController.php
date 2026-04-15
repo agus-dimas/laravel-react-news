@@ -43,7 +43,7 @@ class ConsultationController extends Controller
 
     public function index()
     {
-        $consultations = Consultation::latest()->get();
+        $consultations = Consultation::latest()->paginate(2);
 
         return view('dashboard.consultations.index', compact('consultations'));
     }
