@@ -59,6 +59,12 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 Dashboard
                             </a>
+                            @if(auth()->user()->role === 'super_admin')
+                                <a href="{{ route('dashboard.users.index') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Manajemen User
+                                </a>
+                            @endif
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"

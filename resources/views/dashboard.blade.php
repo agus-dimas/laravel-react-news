@@ -1,69 +1,116 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-4xl mx-auto pt-24 p-6">
-        <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+    <div class="flex min-h-screen bg-zinc-100">
+        <aside class="w-72 bg-[#b3181f] text-white px-6 py-8 hidden lg:block">
+            <div class="text-lg font-semibold tracking-wide">Dashboard</div>
+            <p class="mt-2 text-sm text-white/80">Ringkasan Aktivitas</p>
 
-        {{-- Tombol Aksi --}}
-        <div class="mb-6 flex flex-wrap gap-3 items-center">
-            <a href="{{ route('news.create') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-                Input Berita
-            </a>
+            <nav class="mt-8 space-y-2 text-sm">
+                <a href="{{ route('dashboard') }}" class="block rounded-lg px-3 py-2 bg-white/15">Dashboard</a>
+                @if($isAdmin)
+                    <a href="{{ route('news.create') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Input Berita</a>
+                    <a href="{{ route('consultations.index') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Konsultasi Masuk</a>
+                @else
+                    <a href="{{ route('consultations.create') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Input Konsultasi</a>
+                @endif
+                @if(auth()->user()->role === 'super_admin')
+                    <a href="{{ route('dashboard.users.index') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Manajemen User</a>
+                @endif
+            </nav>
+        </aside>
 
-            <a href="{{ route('consultations.index') }}" class="flex items-center justify-center">
-                <button type="button"
-                    class="relative inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor" viewBox="0 0 20 16">
-                        <path
-                            d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
-                        <path
-                            d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
-                    </svg>
-                    <span class="sr-only">Notifications</span>
-                    Konsultasi
-                    <div
-                        class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                        {{ $consultationCount }}
-                    </div>
-                </button>
-            </a>
-        </div>
-
-        {{-- List Berita --}}
-        <h2 class="text-xl font-semibold mb-4">Berita Anda</h2>
-
-        @if(session('success'))
-            <div class="bg-green-200 text-green-800 p-2 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <div class="space-y-4">
-            @foreach($news as $item) {{-- Ambil berita milik user --}}
-                <div class="p-4 bg-white rounded shadow flex justify-between items-start">
+        <main class="flex-1 px-6 py-10 pt-24">
+            <div class="mx-auto max-w-5xl">
+                <div class="flex flex-wrap items-center justify-between gap-4">
                     <div>
-                        <h3 class="font-bold text-lg">{{ $item->title }}</h3>
-                        <p class="text-sm text-gray-600">{{ Str::limit($item->content, 100) }}</p>
-                        <p class="text-xs text-gray-400">Oleh: {{ $item->user->name }}</p> {{-- <-- autor --}} <a
-                            href="{{ route('news.show', $item->id) }}" class="text-blue-600 hover:underline">
-                            Baca selengkapnya
+                        <h1 class="text-2xl font-semibold text-zinc-900">Dashboard</h1>
+                        <p class="text-sm text-zinc-500">
+                            @if($isAdmin)
+                                Ringkasan berita dan konsultasi terbaru.
+                            @else
+                                Riwayat konsultasi yang sudah kamu input.
+                            @endif
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        @if($isAdmin)
+                            <a href="{{ route('news.create') }}"
+                                class="inline-flex items-center rounded-lg bg-[#b3181f] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#99141b]">Input Berita</a>
+                            <a href="{{ route('consultations.index') }}"
+                                class="relative inline-flex items-center rounded-lg bg-zinc-900 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-zinc-800">
+                                Konsultasi
+                                <span
+                                    class="absolute -top-2 -right-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                                    {{ $consultationCount }}
+                                </span>
                             </a>
-                    </div>
-
-                    {{-- Tombol Hapus --}}
-                    <div>
-                        <form action="{{ route('news.destroy', $item->id) }}" method="POST"
-                            onsubmit="return confirm('Apakah yakin ingin dihapus?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-800">
-                                Hapus
-                            </button>
-                        </form>
+                        @else
+                            <a href="{{ route('consultations.create') }}"
+                                class="inline-flex items-center rounded-lg bg-[#b3181f] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#99141b]">Input Konsultasi</a>
+                        @endif
                     </div>
                 </div>
-            @endforeach
-        </div>
+
+                @if(session('success'))
+                    <div class="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-700">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($isAdmin)
+                    <div class="mt-8">
+                        <h2 class="text-lg font-semibold text-zinc-900 mb-4">Berita</h2>
+                        <div class="space-y-4">
+                            @foreach($news as $item)
+                                <div class="rounded-2xl bg-white p-5 shadow flex flex-col gap-4">
+                                    <div>
+                                        <h3 class="font-bold text-lg text-zinc-900">{{ $item->title }}</h3>
+                                        <p class="text-sm text-zinc-600">{{ Str::limit($item->content, 120) }}</p>
+                                        <p class="text-xs text-zinc-400 mt-2">Oleh: {{ $item->user->name }}</p>
+                                    </div>
+                                    <div class="flex flex-wrap items-center gap-3">
+                                        <a href="{{ route('news.show', $item->id) }}"
+                                            class="text-sm font-semibold text-red-600 hover:text-red-700">Baca selengkapnya</a>
+                                        <form action="{{ route('news.destroy', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Apakah yakin ingin dihapus?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="rounded-lg border border-red-200 px-3 py-1 text-xs font-semibold text-red-600 hover:bg-red-50">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="mt-8">
+                        <h2 class="text-lg font-semibold text-zinc-900 mb-4">Riwayat Konsultasi Saya</h2>
+                        <div class="space-y-4">
+                            @forelse($consultations ?? [] as $consultation)
+                                <div class="rounded-2xl bg-white p-5 shadow">
+                                    <p class="text-sm text-zinc-500">{{ $consultation->created_at->format('d M Y H:i') }}</p>
+                                    <p class="mt-2 text-zinc-800">{{ $consultation->description }}</p>
+                                    @if ($consultation->response)
+                                        <div class="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-700 text-sm">
+                                            <span class="font-semibold">Respon Admin:</span> {{ $consultation->response }}
+                                        </div>
+                                    @endif
+                                </div>
+                            @empty
+                                <div class="rounded-2xl bg-white p-6 text-zinc-500">Belum ada konsultasi.</div>
+                            @endforelse
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </main>
     </div>
 @endsection
