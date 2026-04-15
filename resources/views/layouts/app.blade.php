@@ -19,8 +19,9 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
+        @if (!request()->is('dashboard', 'dashboard/users', 'dashboard/konsultasi', 'dashboard/news/create'))
+            @include('layouts.navigation')
+        @endif
 
         <!-- Page Heading -->
         @isset($header)

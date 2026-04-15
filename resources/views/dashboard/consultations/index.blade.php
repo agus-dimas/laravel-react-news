@@ -2,19 +2,62 @@
 
 @section('content')
     <div class="flex min-h-screen bg-zinc-100">
-        <aside class="w-72 bg-[#b3181f] text-white px-6 py-8 hidden lg:block">
+        <aside class="w-72 bg-[#b3181f] text-white px-6 py-8 hidden lg:flex lg:flex-col">
+            <div>
+            <div class="mb-8">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar"
+                        class="h-10 w-auto object-contain" />
+                </a>
+            </div>
             <div class="text-lg font-semibold tracking-wide">Dashboard</div>
             <p class="mt-2 text-sm text-white/80">Konsultasi Masuk</p>
 
             <nav class="mt-8 space-y-2 text-sm">
-                <a href="{{ route('dashboard') }}" class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Dashboard</a>
-                <a href="{{ route('news.create') }}" class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Input Berita</a>
-                <a href="{{ route('consultations.index') }}" class="block rounded-lg px-3 py-2 bg-white/15">Konsultasi Masuk</a>
+                <a href="{{ route('dashboard') }}"
+                    class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Dashboard</a>
+                <a href="{{ route('news.create') }}"
+                    class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Input Berita</a>
+                <a href="{{ route('consultations.index') }}" class="block rounded-lg px-3 py-2 bg-white/15">Konsultasi
+                    Masuk</a>
                 @if(auth()->user()->role === 'super_admin')
-                    <a href="{{ route('dashboard.users.index') }}" class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Manajemen User</a>
+                    <a href="{{ route('dashboard.users.index') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Manajemen User</a>
                 @endif
             </nav>
+            </div>
+
+            <!-- Profile Akun Login -->
+            <div class="mt-auto pt-8 border-t border-white/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold">
+                        {{ substr(auth()->user()->name, 0, 1) }}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm font-semibold truncate">{{ auth()->user()->name }}</div>
+                        <div class="text-xs text-white/70 truncate mb-1">
+                            {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : (auth()->user()->role === 'admin' ? 'Admin' : 'User') }}
+                        </div>
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ route('logout') }}" class="mt-1">
+                            @csrf
+                            <button type="submit"
+                                class="w-full text-left text-sm text-white/80 hover:text-white flex items-center gap-2 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                    </path>
+                                </svg>
+                                Keluar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
         </aside>
+
 
         <main class="flex-1 px-6 py-10 pt-24">
             <div class="mx-auto max-w-4xl">
@@ -39,40 +82,40 @@
                                     {{ $consultation->created_at->format('d M Y H:i') }}
                                 </p>
                                 <p class="text-gray-700">{{ $consultation->description }}</p>
-                        @if ($consultation->attachment_path)
-                            @php
-                                $attachmentUrl = \Illuminate\Support\Facades\Storage::url($consultation->attachment_path);
-                                $isImage = \Illuminate\Support\Str::endsWith(strtolower($consultation->attachment_path), [
-                                    '.jpg',
-                                    '.jpeg',
-                                    '.png',
-                                    '.webp',
-                                ]);
-                            @endphp
-                            <div class="mt-3">
-                                @if ($isImage)
-                                    <button type="button" data-attachment="{{ $attachmentUrl }}"
-                                        class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition">
-                                        <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                                            stroke-linejoin="round" aria-hidden="true">
-                                            <path d="M21.44 11.05l-8.49 8.49a6 6 0 0 1-8.49-8.49l8.49-8.49a4 4 0 1 1 5.66 5.66l-8.49 8.49a2 2 0 1 1-2.83-2.83l8.49-8.49" />
-                                        </svg>
-                                        Lihat lampiran
-                                    </button>
-                                @else
-                                    <a href="{{ $attachmentUrl }}" target="_blank" rel="noopener"
-                                        class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition">
-                                        <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                                            stroke-linejoin="round" aria-hidden="true">
-                                            <path d="M21.44 11.05l-8.49 8.49a6 6 0 0 1-8.49-8.49l8.49-8.49a4 4 0 1 1 5.66 5.66l-8.49 8.49a2 2 0 1 1-2.83-2.83l8.49-8.49" />
-                                        </svg>
-                                        Lampiran
-                                    </a>
+                                @if ($consultation->attachment_path)
+                                    @php
+                                        $attachmentUrl = \Illuminate\Support\Facades\Storage::url($consultation->attachment_path);
+                                        $isImage = \Illuminate\Support\Str::endsWith(strtolower($consultation->attachment_path), [
+                                            '.jpg',
+                                            '.jpeg',
+                                            '.png',
+                                            '.webp',
+                                        ]);
+                                    @endphp
+                                    <div class="mt-3">
+                                        @if ($isImage)
+                                            <button type="button" data-attachment="{{ $attachmentUrl }}"
+                                                class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition">
+                                                <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                    <path
+                                                        d="M21.44 11.05l-8.49 8.49a6 6 0 0 1-8.49-8.49l8.49-8.49a4 4 0 1 1 5.66 5.66l-8.49 8.49a2 2 0 1 1-2.83-2.83l8.49-8.49" />
+                                                </svg>
+                                                Lihat lampiran
+                                            </button>
+                                        @else
+                                            <a href="{{ $attachmentUrl }}" target="_blank" rel="noopener"
+                                                class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition">
+                                                <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                    <path
+                                                        d="M21.44 11.05l-8.49 8.49a6 6 0 0 1-8.49-8.49l8.49-8.49a4 4 0 1 1 5.66 5.66l-8.49 8.49a2 2 0 1 1-2.83-2.83l8.49-8.49" />
+                                                </svg>
+                                                Lampiran
+                                            </a>
+                                        @endif
+                                    </div>
                                 @endif
-                            </div>
-                        @endif
                                 <form action="{{ route('consultations.respond', $consultation) }}" method="POST" class="mt-4">
                                     @csrf
                                     <textarea name="response" rows="3" placeholder="Tulis respon untuk konsultasi ini..."
@@ -86,6 +129,9 @@
                                 </form>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="mt-6">
+                        {{ $consultations->links() }}
                     </div>
                 @endif
             </div>
@@ -104,7 +150,7 @@
     </div>
 
     <script>
-        (function() {
+        (function () {
             const modal = document.getElementById('attachment-modal');
             const modalImage = document.getElementById('attachment-modal-image');
             const closeBtn = document.getElementById('attachment-close');

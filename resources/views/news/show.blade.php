@@ -13,7 +13,10 @@
                 <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}"
                     class="w-full h-64 sm:h-80 md:h-96 object-cover rounded mb-6">
             @endif
-
+            <div
+                class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                {{ $news->category }}
+            </div>
             <!-- Konten Berita -->
             <div class="prose max-w-full mx-auto text-gray-700 mb-6">
                 {!! $news->content !!}
