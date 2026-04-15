@@ -50,23 +50,34 @@ Route::middleware(['auth'])->group(function () {
     //     return view('dashboard', compact('news'));
     // })->name('dashboard');
 
-    Route::get('/dashboard', function () {
-        $news = \App\Models\News::where('user_id', auth()->id())->latest()->get();
-        $consultationCount = \App\Models\Consultation::count();
-
-        return view('dashboard', compact('news', 'consultationCount'));
-    })->name('dashboard');
+    Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
 
     // List konsultasi untuk user login
-    Route::get('/dashboard/konsultasi', [ConsultationController::class, 'index'])->name('consultations.index');
+    Route::get('/dashboard/konsultasi', [ConsultationController::class, 'index'])
+        ->middleware('admin')
+        ->name('consultations.index');
+    Route::post('/dashboard/konsultasi/{consultation}/response', [ConsultationController::class, 'respond'])
+        ->middleware('admin')
+        ->name('consultations.respond');
 
 
     // Form input berita
-    Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('news.create');
-    Route::post('/dashboard/news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('/dashboard/news/create', [NewsController::class, 'create'])->middleware('admin')->name('news.create');
+    Route::post('/dashboard/news', [NewsController::class, 'store'])->middleware('admin')->name('news.store');
 
     // Hapus berita
-    Route::delete('/dashboard/news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+    Route::delete('/dashboard/news/{id}', [NewsController::class, 'destroy'])->middleware('admin')->name('news.destroy');
+
+    // Manajemen admin (super admin saja)
+    Route::get('/dashboard/users', [App\Http\Controllers\AdminUserController::class, 'index'])
+        ->middleware('super-admin')
+        ->name('dashboard.users.index');
+    Route::post('/dashboard/users', [App\Http\Controllers\AdminUserController::class, 'store'])
+        ->middleware('super-admin')
+        ->name('dashboard.users.store');
+    Route::patch('/dashboard/users/{user}/password', [App\Http\Controllers\AdminUserController::class, 'resetPassword'])
+        ->middleware('super-admin')
+        ->name('dashboard.users.password');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

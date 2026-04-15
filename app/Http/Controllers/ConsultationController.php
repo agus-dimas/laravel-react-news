@@ -47,4 +47,17 @@ class ConsultationController extends Controller
 
         return view('dashboard.consultations.index', compact('consultations'));
     }
+
+    public function respond(Request $request, Consultation $consultation)
+    {
+        $validated = $request->validate([
+            'response' => ['nullable', 'string', 'max:2000'],
+        ]);
+
+        $consultation->update([
+            'response' => $validated['response'] ?? null,
+        ]);
+
+        return back()->with('success', 'Respon konsultasi disimpan.');
+    }
 }

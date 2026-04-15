@@ -14,5 +14,6 @@ class Consultation extends Model
         'description',
         'user_id',
         'attachment_path',
+        'response',
     ];
 }
