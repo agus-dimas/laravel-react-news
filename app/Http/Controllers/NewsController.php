@@ -51,9 +51,15 @@ class NewsController extends Controller
         return view('news.show', compact('news'));
     }
 
-    public function apiIndex()
+    public function apiIndex(Request $request)
     {
-        $news = News::with('user')->latest()->paginate(4); // <-- batasi 3 per halaman
+        $query = News::with('user')->latest();
+
+        if ($request->filled('category') && $request->category !== 'Semua') {
+            $query->where('category', $request->category);
+        }
+
+        $news = $query->paginate(4);
 
         $news->getCollection()->transform(function ($n) {
             return [
@@ -61,11 +67,24 @@ class NewsController extends Controller
                 'title' => $n->title,
                 'content' => $n->content,
                 'image' => $n->image,
+                'category' => $n->category ?? 'Umum',
                 'user_name' => $n->user->name ?? 'Anonim',
             ];
         });
 
         return response()->json($news);
+    }
+
+    public function apiCategories()
+    {
+        $categories = News::select('category')
+            ->whereNotNull('category')
+            ->distinct()
+            ->pluck('category')
+            ->filter()
+            ->values();
+
+        return response()->json($categories);
     }
 
     public function destroy($id)
