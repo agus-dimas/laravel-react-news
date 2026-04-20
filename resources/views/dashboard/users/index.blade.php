@@ -4,25 +4,25 @@
     <div class="flex min-h-screen bg-zinc-100">
         <aside class="w-72 bg-[#b3181f] text-white px-6 py-8 hidden lg:flex lg:flex-col">
             <div>
-            <div class="mb-8">
-                <a href="{{ url('/') }}">
-                    <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar"
-                        class="h-10 w-auto object-contain" />
-                </a>
-            </div>
-            <div class="text-lg font-semibold tracking-wide">Dashboard</div>
-            <p class="mt-2 text-sm text-white/80">Manajemen Sistem</p>
+                <div class="mb-8">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo Navbar"
+                            class="h-10 w-auto object-contain" />
+                    </a>
+                </div>
+                <div class="text-lg font-semibold tracking-wide">Manajemen User</div>
+                <p class="mt-2 text-sm text-white/80">Data pengguna, hak akses, dan informasi akun</p>
 
-            <nav class="mt-8 space-y-2 text-sm">
-                <a href="{{ route('dashboard') }}"
-                    class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Dashboard</a>
-                <a href="{{ route('news.create') }}"
-                    class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Input Berita</a>
-                <a href="{{ route('consultations.index') }}"
-                    class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Konsultasi Masuk</a>
-                <a href="{{ route('dashboard.users.index') }}" class="block rounded-lg px-3 py-2 bg-white/15">Manajemen
-                    User</a>
-            </nav>
+                <nav class="mt-8 space-y-2 text-sm">
+                    <a href="{{ route('dashboard') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Dashboard</a>
+                    <a href="{{ route('news.create') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Input Berita</a>
+                    <a href="{{ route('consultations.index') }}"
+                        class="block rounded-lg px-3 py-2 text-white/80 hover:bg-white/10">Konsultasi Masuk</a>
+                    <a href="{{ route('dashboard.users.index') }}" class="block rounded-lg px-3 py-2 bg-white/15">Manajemen
+                        User</a>
+                </nav>
             </div>
 
             <!-- Profile Akun Login -->

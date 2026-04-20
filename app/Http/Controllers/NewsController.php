@@ -48,7 +48,8 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::with('user')->findOrFail($id);
-        return view('news.show', compact('news'));
+        $recommendations = News::where('id', '!=', $id)->latest()->take(5)->get();
+        return view('news.show', compact('news', 'recommendations'));
     }
 
     public function apiIndex(Request $request)

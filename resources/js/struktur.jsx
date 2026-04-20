@@ -19,13 +19,13 @@ const boardMembers = [
         role: 'Wakil Ketua Umum',
         name: 'Teddy Gusnaidi',
         bio: 'Mengawal koordinasi antar divisi dan penguatan kolaborasi internal.',
-        photo: '/images/pengurus/tedy.jpg',
+        photo: '/images/pengurus/tedy.png',
     },
     {
         role: 'Ketua 1',
         name: 'Faisal',
         bio: 'Menyusun inisiatif, agenda kerja, dan evaluasi pelaksanaan kegiatan.',
-        photo: '/images/pengurus/faisal.jpg',
+        photo: '/images/pengurus/faisal.png',
     },
     {
         role: 'Ketua 2',
@@ -37,13 +37,13 @@ const boardMembers = [
         role: 'Ketua 3',
         name: 'Ahmad Muhlis Fanani',
         bio: 'Menguatkan sistem internal dan pengembangan kualitas kader pengurus.',
-        photo: '/images/pengurus/caklis.jpg',
+        photo: '/images/pengurus/caklis.png',
     },
     {
         role: 'Wakil Sekretaris Jenderal',
         name: 'Saiful Rahman',
         bio: 'Menginisiasi program sosial kemasyarakatan yang terukur dan berkelanjutan.',
-        photo: '/images/pengurus/saiful.jpg',
+        photo: '/images/pengurus/saiful.png',
     },
     {
         role: 'Wakil Sekretaris Jenderal',
@@ -87,7 +87,8 @@ function StrukturPage() {
         <div className="min-h-screen pt-16 text-zinc-900 bg-transparent md:bg-white">
             <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-transparent md:bg-white">
                 <div className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[calc(100vh-4rem)] grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr]">
-                    <div className="order-2 md:order-1 relative flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-10 md:py-12 lg:py-16 bg-[url('../images/struktur/background-struktur.jpg')] md:bg-white md:mr-[-8vw] md:pr-[20vw]">
+                    <div className="order-2 md:order-1 relative z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-10 md:py-12 lg:py-16 bg-cover bg-center bg-no-repeat md:mr-[-12vw] md:pr-[18vw]"
+                        style={{ backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 1.60)),url('/images/news-bg.jpg')" }}>
 
                         <div className="relative z-10">
                             <p className="text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3">
@@ -120,13 +121,12 @@ function StrukturPage() {
                     </div>
 
                     <div className="order-1 md:order-2 relative overflow-visible bg-transparent flex items-end justify-center md:justify-start pl-0 md:pl-2 pr-0 md:pr-0 h-[360px] sm:h-[420px] md:h-auto">
-                        <div className="absolute inset-y-0 left-0 md:left-[25%] right-0 bg-gradient-to-br from-[#a40f14] via-[#b3181f] to-[#8e0f14]" />
+                        <div className="absolute inset-y-0 left-0 p:left-[20%] right-0 bg-gradient-to-br from-[#a40f14] via-[#b3181f] to-[#8e0f14]" />
                         <img
                             src="/images/struktur/atribut 1.png"
                             alt=""
                             aria-hidden="true"
-                            className="absolute right-0 top-0 h-[82%] sm:h-[85%] md:h-full w-auto pointer-events-none z-40"
-                        />
+                            className="absolute right-0 top-0 h-[70%] sm:h-[75%] md:h-[90%] w-auto pointer-events-none z-40 translate-x-14" />
                         <img
                             src={activeMember.photo || fallbackPhoto}
                             alt={activeMember.name}

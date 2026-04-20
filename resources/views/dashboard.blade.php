@@ -10,7 +10,7 @@
                             class="h-10 w-auto object-contain" />
                     </a>
                 </div>
-                <div class="text-lg font-semibold tracking-wide">Dashboard</div>
+                <div class="text-lg font-semibold tracking-wide">Selamat Datang</div>
                 <p class="mt-2 text-sm text-white/80">Ringkasan Aktivitas</p>
 
                 <nav class="mt-8 space-y-2 text-sm">
