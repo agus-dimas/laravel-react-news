@@ -31,7 +31,7 @@ const boardMembers = [
         role: 'Ketua 2',
         name: 'Jeffry Yulianto Waisapy',
         bio: 'Membangun komunikasi publik dan memperkuat citra organisasi.',
-        photo: '/images/pengurus/jefry.jpg',
+        photo: '/images/pengurus/jefry.png',
     },
     {
         role: 'Ketua 3',
@@ -49,25 +49,25 @@ const boardMembers = [
         role: 'Wakil Sekretaris Jenderal',
         name: 'Sulistianing Sasih',
         bio: 'Mengelola publikasi visual, konten digital, dan kanal komunikasi organisasi.',
-        photo: '/images/pengurus/sulistia.jpg',
+        photo: '/images/pengurus/sulistia.png',
     },
     {
         role: 'Wakil Bendahara Umum',
         name: 'Eka Arum Maqshuuroh',
         bio: 'Menyusun kajian, riset kebijakan, dan rekomendasi berbasis data lapangan.',
-        photo: '/images/pengurus/harum.jpg',
+        photo: '/images/pengurus/harum.png',
     },
     {
         role: 'Wakil Bendahara Umum',
         name: 'Tia Fathiah',
         bio: 'Mendampingi isu strategis masyarakat dan memperjuangkan aspirasi publik.',
-        photo: '/images/pengurus/tia.jpg',
+        photo: '/images/pengurus/tia.png',
     },
     {
         role: 'Bendahara Umum',
         name: 'Fajar Muhammad Faiz Rozi',
         bio: 'Menjaga transparansi keuangan serta pengelolaan anggaran program.',
-        photo: '/images/pengurus/pfaiz.jpg',
+        photo: '/images/pengurus/pfaiz.png',
     },
 ];
 
@@ -79,6 +79,9 @@ function StrukturPage() {
 
     const goNext = () => {
         setCurrentIndex((prev) => (prev + 1) % totalMembers);
+    };
+    const goPrev = () => {
+        setCurrentIndex((prev) => (prev - 1 + totalMembers) % totalMembers);
     };
 
     const activeMember = boardMembers[currentIndex];
@@ -105,17 +108,28 @@ function StrukturPage() {
                             <div className="mt-10 flex items-center gap-3">
                                 <button
                                     type="button"
+                                    onClick={goPrev}
+                                    className="inline-flex items-center gap-3 bg-zinc-300 text-black px-6 py-2.5 text-sm font-semibold uppercase tracking-widest shadow transition hover:translate-y-[-1px]"
+                                    aria-label="Previous pengurus"
+                                >
+                                    Prev
+                                </button>
+                                <button
+                                    type="button"
                                     onClick={goNext}
                                     className="inline-flex items-center gap-3 bg-[#b3181f] text-white px-6 py-2.5 text-sm font-semibold uppercase tracking-widest shadow-[0_10px_24px_rgba(179,24,31,0.35)] transition hover:translate-y-[-1px]"
                                     aria-label="Next pengurus"
                                 >
                                     Next
                                 </button>
+
+
                                 <div className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-zinc-500">
                                     <span>{currentIndex + 1}</span>
                                     <span>/</span>
                                     <span>{totalMembers}</span>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -126,7 +140,8 @@ function StrukturPage() {
                             src="/images/struktur/atribut 1.png"
                             alt=""
                             aria-hidden="true"
-                            className="absolute right-0 top-0 h-[70%] sm:h-[75%] md:h-[90%] w-auto pointer-events-none z-40 translate-x-14" />
+
+                            className="absolute right-0 top-0 h-[60%] sm:h-[75%] md:h-[90%] w-auto pointer-events-none z-40 translate-x-0" />
                         <img
                             src={activeMember.photo || fallbackPhoto}
                             alt={activeMember.name}
