@@ -19,7 +19,7 @@ class DashboardController extends Controller
         } else {
             $news = News::where('user_id', $user->id)->latest()->paginate(3);
             $consultationCount = Consultation::where('user_id', $user->id)->count();
-            $consultations = Consultation::where('user_id', $user->id)->latest()->get();
+            $consultations = Consultation::where('user_id', $user->id)->latest()->paginate(5);
         }
 
         return view('dashboard', compact('news', 'consultationCount', 'consultations', 'isAdmin'));

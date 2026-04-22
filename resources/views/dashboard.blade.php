@@ -141,7 +141,7 @@
                     <div class="mt-8">
                         <h2 class="text-lg font-semibold text-zinc-900 mb-4">Riwayat Konsultasi Saya</h2>
                         <div class="space-y-4">
-                            @forelse($consultations ?? [] as $consultation)
+                            @forelse($consultations as $consultation)
                                 <div class="rounded-2xl bg-white p-5 shadow">
                                     <p class="text-sm text-zinc-500">{{ $consultation->created_at->format('d M Y H:i') }}</p>
                                     <p class="mt-2 text-zinc-800">{{ $consultation->description }}</p>
@@ -156,6 +156,11 @@
                                 <div class="rounded-2xl bg-white p-6 text-zinc-500">Belum ada konsultasi.</div>
                             @endforelse
                         </div>
+                        @if($consultations->hasPages())
+                            <div class="mt-6">
+                                {{ $consultations->onEachSide(1)->links() }}
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>
