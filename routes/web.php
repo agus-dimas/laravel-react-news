@@ -80,6 +80,11 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('super-admin')
         ->name('dashboard.users.password');
 
+    // Berita Actions (Like & Comment)
+    Route::post('/news/{id}/like', [NewsController::class, 'toggleLike'])->name('news.like');
+    Route::post('/news/{id}/comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{id}', [\App\Http\Controllers\CommentController::class, 'destroy'])->name('comments.destroy');
+
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

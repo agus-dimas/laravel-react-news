@@ -26,6 +26,22 @@ class News extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest();
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(NewsLike::class);
+    }
+
+    public function isLikedBy($user)
+    {
+        if (!$user) return false;
+        return $this->likes()->where('user_id', ($user instanceof User) ? $user->id : $user)->exists();
+    }
+
     /**
      * (Opsional) Cast data
      * Berguna kalau nanti ada field boolean / datetime / json

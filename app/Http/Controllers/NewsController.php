@@ -47,9 +47,43 @@ class NewsController extends Controller
     }
     public function show($id)
     {
-        $news = News::with('user')->findOrFail($id);
+        $news = News::with(['user', 'comments.user', 'likes'])->findOrFail($id);
+
+        // Increment views
+        $news->increment('views');
+
         $recommendations = News::where('id', '!=', $id)->latest()->take(5)->get();
         return view('news.show', compact('news', 'recommendations'));
+    }
+
+    public function toggleLike($id)
+    {
+        $news = News::findOrFail($id);
+        $user = auth()->user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $like = \App\Models\NewsLike::where('news_id', $news->id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($like) {
+            $like->delete();
+            $liked = false;
+        } else {
+            \App\Models\NewsLike::create([
+                'news_id' => $news->id,
+                'user_id' => $user->id,
+            ]);
+            $liked = true;
+        }
+
+        return response()->json([
+            'liked' => $liked,
+            'count' => $news->likes()->count()
+        ]);
     }
 
     public function apiIndex(Request $request)
