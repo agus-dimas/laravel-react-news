@@ -108,38 +108,46 @@ function StrukturPage() {
         <div className="min-h-screen pt-16 text-zinc-900 bg-transparent md:bg-white">
             <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-transparent md:bg-white">
                 <div className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[calc(100vh-4rem)] grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr]">
-                    <div className="order-2 md:order-1 relative z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-10 md:py-12 lg:py-16 bg-cover bg-center bg-no-repeat md:mr-[-12vw] md:pr-[18vw]"
+                    <div className="order-2 md:order-1 relative z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-10 md:py-12 lg:py-16 bg-zinc-950 md:mr-[-12vw] md:pr-[18vw] overflow-hidden"
                         style={{
-                            backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.60), rgba(255, 255, 255, 1.60)),url('/images/news-bg.jpg')",
                             transform: 'translateZ(0)',
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
                         }}>
 
-                        <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col justify-between">
+                        <div className="absolute inset-0 z-0">
+                            <img
+                                src="/images/banner-about.jpg"
+                                alt=""
+                                className="w-full h-full object-cover opacity-20 mix-blend-overlay"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 to-red-900/40"></div>
+                        </div>
+
+                        <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col justify-between pb-8 md:pb-20">
                             <div
                                 key={`content-${currentIndex}-${direction}`}
                                 className={`relative struktur-copy-reveal ${direction === 'prev' ? 'is-prev' : ''}`}
                             >
-                                <p className="text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3">
+                                <p className="text-[11px] tracking-[0.3em] uppercase text-red-500 font-bold mb-3">
                                     {activeMember.role.toUpperCase()}
                                 </p>
                                 <div className="inline-flex max-w-full flex-col items-start">
-                                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-zinc-900 leading-tight">
-                                        {activeMember.name.toUpperCase()}
+                                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight uppercase">
+                                        {activeMember.name}
                                     </h1>
-                                    <div className="mt-3 h-1 w-full bg-[#b3181f]" />
+                                    <div className="mt-3 h-1 w-full bg-red-600 rounded-full max-w-full" />
                                 </div>
-                                <p className="mt-6 text-base sm:text-lg text-zinc-600 leading-relaxed max-w-xl">
+                                <p className="mt-6 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
                                     {activeMember.bio}
                                 </p>
                             </div>
 
-                            <div className="mt-7 md:mt-8 flex items-center gap-3">
+                            <div className="flex items-center gap-3">
                                 <button
                                     type="button"
                                     onClick={goPrev}
-                                    className="inline-flex items-center gap-3 bg-zinc-300 px-6 py-2.5 text-sm font-semibold uppercase tracking-widest text-black shadow"
+                                    className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition backdrop-blur-sm rounded-lg"
                                     aria-label="Previous pengurus"
                                 >
                                     Prev
@@ -147,14 +155,14 @@ function StrukturPage() {
                                 <button
                                     type="button"
                                     onClick={goNext}
-                                    className="inline-flex items-center gap-3 bg-[#b3181f] px-6 py-2.5 text-sm font-semibold uppercase tracking-widest text-white shadow-[0_10px_24px_rgba(179,24,31,0.35)]"
+                                    className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white shadow-[0_10px_24px_rgba(179,24,31,0.4)] transition rounded-lg"
                                     aria-label="Next pengurus"
                                 >
                                     Next
                                 </button>
 
-                                <div className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-zinc-500">
-                                    <span>{currentIndex + 1}</span>
+                                <div className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-zinc-400 font-bold ml-4">
+                                    <span className="text-red-500">{currentIndex + 1}</span>
                                     <span>/</span>
                                     <span>{totalMembers}</span>
                                 </div>

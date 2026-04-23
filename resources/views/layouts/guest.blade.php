@@ -34,7 +34,7 @@
                 <div class="mb-8">
                     <a href="/">
                         <img src="{{ asset('images/update logo/LogoNavbar.png') }}" alt="Logo"
-                            class="h-10 w-auto -translate-x-4 translate-y-6">
+                            class="h-10 w-auto -translate-x-4 translate-y-3">
                     </a>
                 </div>
                 <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-6">
