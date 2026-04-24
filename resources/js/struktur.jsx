@@ -180,10 +180,10 @@ function StrukturPage() {
                             }}
                         />
                         <img
-                            src="/images/struktur/atribut 1.png"
+                            src="/images/struktur/atribut 2.png"
                             alt=""
                             aria-hidden="true"
-                            className="hidden md:block absolute left-[30%] top-0 h-[60%] sm:h-[75%] md:h-[90%] w-auto pointer-events-none z-40" />
+                            className="hidden md:block absolute left-[20%] top-0 h-[60%] sm:h-[75%] md:h-[90%] w-auto pointer-events-none z-30" />
                         <img
                             src={activeMember.photo || fallbackPhoto}
                             alt={activeMember.name}
