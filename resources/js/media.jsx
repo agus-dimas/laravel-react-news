@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom/client';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import '../css/app.css';
-import { Footer } from './components/Footer'; // Footer.jsx ada
+import { Footer } from './components/Footer';
 
 const youtubeVideos = [
     {
@@ -92,6 +93,11 @@ const MediaApp = () => {
     const [statsVisible, setStatsVisible] = useState(false);
     const viewCount = useRollingNumber(1287500, 3200, statsVisible);
 
+
+    const { scrollY } = useScroll();
+    const headerY = useTransform(scrollY, [0, 500], [0, 150]);
+    const headerOpacity = useTransform(scrollY, [0, 300], [1, 0.3]);
+
     useEffect(() => {
         if (!statsRef.current) return;
 
@@ -112,12 +118,18 @@ const MediaApp = () => {
     return (
         <div className="min-h-screen flex flex-col bg-[#f5f5f4]">
             <main className="flex-grow pt-16 px-4 md:px-8 pb-10">
-                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden mb-8">
-                    <img
-                        src="/images/banner home.jpg"
-                        alt="Header Media"
-                        className="w-full h-[220px] md:h-[360px] lg:h-[420px] object-cover"
-                    />
+                <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] h-[220px] md:h-[360px] lg:h-[420px] overflow-hidden mb-8">
+                    <motion.div
+                        style={{ y: headerY, opacity: headerOpacity }}
+                        className="absolute inset-0 w-full h-full"
+                    >
+                        <img
+                            src="/images/banner-media.jpg"
+                            alt="Header Media"
+                            className="w-full h-full object-cover scale-80"
+                        />
+                        <div className="absolute inset-0 bg-black/10" />
+                    </motion.div>
                 </section>
 
                 <section className="max-w-6xl mx-auto">
@@ -268,11 +280,33 @@ const MediaApp = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            show: {
+                                opacity: 1,
+                                transition: {
+                                    staggerChildren: 0.1
+                                }
+                            }
+                        }}
+                    >
                         {youtubeVideos.map((video, i) => (
-                            <VideoCard key={`${video.title}-${i}`} {...video} />
+                            <motion.div
+                                key={`${video.title}-${i}`}
+                                variants={{
+                                    hidden: { opacity: 0, y: 20 },
+                                    show: { opacity: 1, y: 0 }
+                                }}
+                            >
+                                <VideoCard {...video} />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </section>
             </main>
 

@@ -7,7 +7,7 @@ const boardMembers = [
         role: 'Ketua Umum',
         name: 'Ahmad Ridha Sabana',
         bio: 'Memimpin arah Partai dan memastikan setiap program berjalan sesuai dengan misi partai.',
-        photo: '/images/struktur/person.png',
+        photo: '/images/pengurus/ketum.png',
     },
     {
         role: 'Sekretaris Jenderal',
