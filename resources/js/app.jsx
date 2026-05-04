@@ -102,7 +102,7 @@ const App = () => {
                     <span className="hero-sheen-two pointer-events-none absolute inset-y-0 -left-1/3 w-1/4" />
                 </section>
 
-                <section className="mb-8">
+                <section className="py-10 md:py-16">
                     <div className="w-full md:max-w-5xl mx-auto px-3 md:px-6">
                         <div className="rounded-2xl px-6 py-6 md:px-8 md:py-7">
                             <p className="text-[11px] md:text-xs uppercase tracking-[0.25em] text-red-600 font-semibold mb-2">
