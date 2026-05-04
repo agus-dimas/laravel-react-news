@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
         if ($isAdmin) {
             $news = News::latest()->paginate(3);
-            $consultationCount = Consultation::count();
+            $consultationCount = Consultation::where('is_read', false)->count();
             $consultations = collect();
         } else {
             $news = News::where('user_id', $user->id)->latest()->paginate(3);

@@ -25,10 +25,12 @@
                             <a href="{{ route('consultations.index') }}"
                                 class="relative inline-flex items-center rounded-lg bg-zinc-900 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-zinc-800">
                                 Konsultasi
-                                <span
-                                    class="absolute -top-2 -right-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
-                                    {{ $consultationCount }}
-                                </span>
+                                @if($consultationCount > 0)
+                                    <span
+                                        class="absolute -top-2 -right-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                                        {{ $consultationCount }}
+                                    </span>
+                                @endif
                             </a>
                         @else
                             <a href="{{ route('consultations.create') }}"

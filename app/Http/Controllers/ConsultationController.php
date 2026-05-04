@@ -43,6 +43,8 @@ class ConsultationController extends Controller
 
     public function index()
     {
+        Consultation::where('is_read', false)->update(['is_read' => true]);
+
         $consultations = Consultation::latest()->paginate(2);
 
         return view('dashboard.consultations.index', compact('consultations'));
