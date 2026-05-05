@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { motion } from 'framer-motion';
 import '../css/app.css';
 import { Footer } from './components/Footer';
 
@@ -152,6 +153,73 @@ function AboutPage() {
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/2 via-black/20 to-transparent" />
 
                     </div>
+                </section>
+
+                {/* Section Galeri Kegiatan */}
+                <section className="max-w-7xl mx-auto px-4 md:px-8 mt-24 mb-20 overflow-hidden">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="text-center mb-12"
+                    >
+                        <p className="text-[11px] tracking-[0.24em] uppercase text-red-600 font-semibold mb-3">Galeri Kegiatan</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">Momen Perjuangan & Aksi Nyata</h2>
+                        <div className="mt-4 w-20 h-1 bg-red-600 mx-auto rounded-full"></div>
+                    </motion.div>
+
+                    <motion.div
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            show: {
+                                opacity: 1,
+                                transition: {
+                                    staggerChildren: 0.15
+                                }
+                            }
+                        }}
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                    >
+                        {[1, 2, 3, 4].map((i) => (
+                            <motion.div
+                                key={i}
+                                variants={{
+                                    hidden: { opacity: 0, y: 40, scale: 0.95 },
+                                    show: {
+                                        opacity: 1,
+                                        y: 0,
+                                        scale: 1,
+                                        transition: {
+                                            duration: 0.7,
+                                            ease: [0.22, 1, 0.36, 1]
+                                        }
+                                    }
+                                }}
+                                className="group relative overflow-hidden rounded-2xl aspect-[3/4] shadow-xl cursor-pointer bg-zinc-200"
+                                style={{ willChange: 'transform, opacity' }}
+                            >
+                                <img
+                                    src={`/images/about/gallery_${i}.jpg`}
+                                    alt={`Kegiatan ${i}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                                    <p className="text-white text-sm font-semibold tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        {i === 1 ? 'Aksi Sosial Masyarakat' : i === 2 ? 'Diskusi Keanggotaan' : i === 3 ? 'Konsolidasi Nasional' : 'Konferensi Pers Utama'}
+                                    </p>
+                                    <p className="text-white/70 text-[10px] uppercase tracking-widest mt-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                                        Dokumentasi 2025
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
                 </section>
             </main>
 
